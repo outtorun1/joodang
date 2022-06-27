@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+
+<head>
+	<title>로그인</title>
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+	<style>
+		body {
+			justify-content: center;
+			height: 100vh;
+			background-size: cover;
+		}
+
+		body::before {
+			z-index: 2;
+		}
+
+		.login-form{
+
+			width: 500px;
+			margin: 80px auto;
+		}
+		.form_box{
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.login-form h1 {
+			font-size: 32px;
+			color: black;
+			text-align: center;
+			margin-bottom: 60px;
+		}
+
+		.int-area {
+			width: 400px;
+			position: relative;
+			margin-top: 20px;
+		}
+
+		.int-area:first-child {
+			margin-top: 0;
+		}
+
+		.int-area input {
+			width: 100%;
+			padding: 20px 10px 10px;
+			background-color: transparent;
+			border: none;
+			border-bottom: 1px solid #999;
+			font-size: 18px;
+			color: black;
+			outline: none;
+		}
+
+		.int-area label {
+			position: absolute;
+			left: 10px;
+			top: -10px;
+			font-size: 18px;
+			color: #999;
+			transition: top .5s ease;
+		}
+
+		.int-area input:focus+label, .int-area input:valid+label {
+			top: -2px;
+			font-size: 13px;
+			color: #166cea;
+		}
+
+		.btn-area {
+			margin-top: 30px;
+		}
+		/*로그인 버튼*/
+		.btn-area button {
+			margin-top: 20px;
+			margin-bottom : 20px;
+			width: 100%;
+			height: 50px;
+			background: #DEB887;
+			color: #fff;
+			font-size: 20px;
+			border: none;
+			border-radius: 25px;
+			width: 100%;
+		}
+		.btn-area button:hover{
+			background: #DEB887;
+			color: threedshadow;
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+		}
+		.caption {
+			text-align: center;
+		}
+
+		.caption li {
+			display: inline-block;
+			margin-top: 30px;
+			margin: 0px 20px;
+		}
+
+		.caption a {
+			font-size: 15px;
+			color: #999;
+			text-decoration: none;
+		}
+
+		.img_li{
+			float: left;
+			text-align: center;
+		}
+		#GgCustomLogin{
+			float: left;
+		}
+		.icon_api{
+			padding-top:10px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.icon_login {
+			width: 100%;
+			height: 200px;
+			border: 1px solid black;
+			padding-top: 30px;
+			text-align: center;}
+		.social_tit{font-size: 24px; text-align: center; width:100%; padding-top: 20px;}
+
+		.icon_login li{display: inline-block;
+			padding-top: 30px;
+			padding-right: 10px;
+			font-size: 18px;
+			font-weight: 600;}
+
+		.social_btn{
+			background:center no-repeat;
+			background-size: cover;}
+
+		.error {
+			color: #bd2130;
+		}
+
+
+	</style>
+</th:block>
+</head>
+	<div layout:fragment="content">
+		<div class="login-form" >
+			<h1>로그인 페이지</h1>
+			<form class="form_box" role="form" action="/member/meLogin" method="post">
+				<div class="int-area">
+					<label th:for="email"></label>
+					<input type="email" name="email" id="email" placeholder="User Email">
+				</div>
+				<div class="int-area">
+					<label th:for="password"></label>
+					<input type="password" name="password" placeholder="User Passwoord">
+
+					<p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+					<div class="btn-area">
+						<button type="submit">Login</button>
+					</div>
+				</div>
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			</form>
+			<div class="caption">
+				<ul>
+					<li class="tag_01"><a href="#"><strong>아이디 찾기</strong></a></li>
+					<li class="tag_01"><a href="#"><strong>비밀번호 재발급</strong></a></li>
+					<li class="tag_01"><a href="/member/meInsertFirst"><strong>회원가입</strong></a></li>
+				</ul>
+
+				<div class=icon_api>
+					<ul class="icontable">
+						<li><a href="#" class="social_btn naver"><img src="/imgs/insert/naver.png"></a></li>
+						<li><a href="https://kauth.kakao.com/oauth/authorize?client_id=	d11cbe97ef5f374a557250f4d406862b&redirect_uri=http://localhost:8008/member/kakaoLogin&response_type=code" class="social_btn kakao"><img src="/imgs/insert/kakao.png"></a></li>
+						<li> <a href="#" class="social_btn face"><img src="/imgs/insert/face.png"></a></li>
+						<li><a href="#" class="social_btn google"><img src="/imgs/insert/google.png"></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</html>

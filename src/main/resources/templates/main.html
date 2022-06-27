@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+
+
+<head>
+    <th:block layout:fragment="css">
+        <style>
+
+            * {
+                margin: 0 auto;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                margin-bottom:100px;
+
+            }
+
+
+            .slide{
+                height: 570px;
+            }
+            .carousel-inner>.item>img{
+                width: 100%;
+                height: 570px;
+            }
+            section{
+                width: 100%;
+            }
+
+            /* content style */
+            .wrapdiv{
+                width: 100%;
+                height: 820px;
+            }
+
+            .bg_img {
+                width: 1700px;
+                height: 900px;
+                margin: 0 auto;
+                margin-top: 5px;
+                background-image: url("https://ifh.cc/g/2dbQ5p.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 10px;
+                opacity: 0.85;
+            }
+
+            .con1{
+                margin-top: 30px;
+                padding-top: 2%;
+                padding-left: 15%;
+                color: #111111;
+                float: left;
+                font-weight: 900;
+
+            }
+            #smaltext{
+                font-size: 22px;
+            }
+        </style>
+    </th:block>
+
+    <script th:src="@{js/sample.js}"></script>
+
+</head>
+
+<div layout:fragment="content">
+    <div class="wrapdiv">
+        <div class="bg_img">
+            <div class="con1">
+                <p id="smaltext">시간이 흐를수록 빛나는 모던함. 주당의 철학입니다.</p><br>
+
+                <h1>조상의 정성으로 빚은 우리의 술</h1>
+                <h1>역사와 전통이 살아 숨쉬는, 꼭 한번 맛보고 싶은</h1>
+                <h1>우리 술을 귀하게 담았습니다.</h1>
+                <h1>전통이 담기고, 역사가 흐르고, 이야기가 있는</h1>
+                <h1>우리 술 한잔, 알면 마시고, 마시면 사랑하게 되느니,</h1>
+                <h1>그것이 바로 우리</h1>
+                <h1>술입니다.</h1>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;900&family=Yeon+Sung&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/74c7988be3.js" crossorigin="anonymous"></script>
+
+    <!-- for BootStrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" th:href="@{/css/css_header.css}">
+    <link rel="stylesheet" th:href="@{/css/css_footer.css}">
+
+    <!-- 공통으로 쓰이는 js 파일을 넣는다.-->
+    <script th:src="@{js/js_header.js}"></script>
+    <script th:src="@{js/js_footer.js}"></script>
+<!--    <script th:src="@{js/jquery-3.6.0.min.js}"></script>-->
+<!--    <script th:src="@{js/bootstrap.min.js}"></script>-->
+</head>
+<!-- header 시작 -->
+<header th:replace="fragments/header :: headerFragment"></header>
+<!-- header 끝 -->
+<!-- content 시작 -->
+<div layout:fragment="content"></div>
+<!-- content 끝 -->
+<!-- footer 시작 -->
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+<!-- footer 끝 -->
+
+</html>

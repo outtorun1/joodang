@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout1}">
+<head>
+
+
+<!--<link th:href="@{/css/meMyFormCss.css}" rel="stylesheet">-->
+
+<meta charset="UTF-8">
+<title>마이페이지</title>
+
+
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+//팝업 띄우기
+function openPop() {
+    document.getElementById("popup_layer").style.display = "block";
+
+}
+//팝업 닫기
+function closePop() {
+    document.getElementById("popup_layer").style.display = "none";
+}
+</script>
+<style>
+	ul {
+	list-style: none;
+}
+
+.div00 {
+	margin: 0 auto;
+	width: 80%;
+	height: 90%;
+	border: 5px solid #e8e8e8;
+}
+
+.div01 {
+	margin: 0 auto;
+	width: 500px;
+	height: 100px;
+	text-align: center;
+}
+/* info div style */
+.infodiv {
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 150px;
+}
+
+.infodiv>p {
+	font-size: 33px;
+}
+/*주문처리현황 배송관련 큰div*/
+.mypage_orderlist01 {
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 80%;
+	height: 150px;
+	border: 5px solid #e8e8e8;
+}
+/*나의 주문처리현황 div*/
+.mypage_orderlist02 {
+	width: 945px;
+	font-size: 35px;
+}
+
+.mypage_orderlist03 {
+	margin: 0 auto;
+	width: 1200px;
+}
+/*h3 최근3개월 기준span*/
+.hspan_01 {
+	font-size: 20px;
+}
+
+.mypage_orderlist04 {
+	width: 1300px;
+}
+/*취소 반품건*/
+.mypage_orderlist05 {
+	margin: 0 auto;
+	text-align: center;
+	width: 100px;
+	display: inline-block;
+	font-size: 17px;
+}
+
+.mypage_li_01 {
+	margin: 0 auto;
+	text-align: center;
+	width: 250px;
+	height: 82px;
+	border-right: 2px dotted #c9c7ca;
+	float: left;
+	font-size: 25px;
+}
+
+.mypage_shop {
+	border: 1px solid black;
+	width: 220px;
+	height: 320px;
+	padding: 40px 15px;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 18px;
+}
+/* "/joodang/images/log_icon/ico_face.png */
+/*주문내역조회*/
+#mypage_order01 {
+	background-image: url("/imgs/mypage_icon/order.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*회원정보*/
+#mypage_order02 {
+	background-image: url("/imgs/mypage_icon/profile.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*관심상품*/
+#mypage_order03 {
+	background-image:
+		url("/imgs/mypage_icon/Wishlist.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*적립금*/
+#mypage_order04 {
+	background-image: url("/imgs/mypage_icon/mileage.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*쿠폰*/
+#mypage_order05 {
+	background-image: url("/imgs/mypage_icon/coupon.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*1:1문의내역*/
+#mypage_order06 {
+	background-image:
+		url("/imgs/mypage_icon/inquirydetails.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*배송주소록관리*/
+#mypage_order07 {
+	background-image:
+		url("/imgs/mypage_icon/delivery.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+/*정기배송관리*/
+#mypage_order08 {
+	background-image:
+		url("/imgs/mypage_icon/calendar.png");
+	background-size: cover;
+	width: 70px;
+	height: 70px;
+	margin: 0 auto;
+}
+
+/*mypage ul태그*/
+.mypage_ul01 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/*mypage ul > li*/
+.mypage_ul01 li {
+	margin: 50px;
+	border: 1px solid #e9e9e9;
+}
+/*popup*/
+.popup_layer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+/*팝업 박스*/
+.popup_box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 1rem 1.5rem;
+	width: 532px;
+	height: 287px;
+	border-radius: 0.5rem;
+}
+/*position: relative;top:50%;left:50%; overflow: auto; height: 600px; width:375px;
+transform:translate(-50%, -50%);z-index:1002;box-sizing:border-box;background:#fff;
+box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);-webkit-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);
+-moz-box-shadow: 2px 5px 10px 0px rgba(0,0,0,0.35);}*/
+/*컨텐츠 영역*/
+.popup_box .popup_cont {
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+.popup_box .popup_cont h2 {
+	padding: 15px 0;
+	color: #333;
+	margin: 0;
+}
+
+.popup_box .popup_cont p {
+	border-top: 1px solid #666;
+	padding-top: 30px;
+}
+/*버튼영역*/
+.popup_box .popup_btn {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 70px;
+	background: #ECECEC;
+	word-break: break-word;
+}
+
+.popup_box .popup_btn a {
+	position: relative;
+	display: table-cell;
+	height: 70px;
+	font-size: 17px;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	background: #ECECEC;
+}
+
+.popup_box .popup_btn a:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 26px;
+	right: 29px;
+	width: 1px;
+	height: 21px;
+	background: #fff;
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.popup_box .popup_btn a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 26px;
+	right: 29px;
+	width: 1px;
+	height: 21px;
+	background: #fff;
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.popup_box .popup_btn a.close_day {
+	background: #5d5d5d;
+}
+
+.popup_box .popup_btn a.close_day:before, .popup_box .popup_btn a.close_day:after
+	{
+	display: none;
+}
+/*오버레이 뒷배경*/
+.popup_overlay {
+	position: fixed;
+	top: 0px;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1001;;
+	background: rgba(0, 0, 0, 0.5);
+}
+/*popup*/
+
+</style>
+</th:block>
+
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready( function() {
+
+			$("#com").load("/");  // 원하는 파일 경로를 삽입하면 된다
+
+		});
+	</script>
+</head>
+
+
+
+<div layout:fragment="content">
+
+	<div class="div00">
+		<div class="infodiv">
+			<p class="infop">마이 페이지</p>
+		</div>
+		<div class="mypage_orderlist01">
+			<div class="mypage_orderlist02">
+				<h3>
+					나의 주문처리 현황 <span class="hspan_01">(최근 3개월 기준)</span>
+				</h3>
+			</div>
+			<div class="mypage_orderlist03">
+				<ul class="mypage_orderlist04">
+					<li class="mypage_li_01"><strong>입금전</strong><br> <a
+						href="">0건</a></li>
+					<li class="mypage_li_01"><strong>배송준비중</strong><br> <a
+						href="">0건</a></li>
+					<li class="mypage_li_01"><strong>배송중</strong><br> <a
+						href="">0건</a></li>
+					<li class="mypage_li_01"><strong>배송완료</strong><br> <a
+						href="">0건</a></li>
+				</ul>
+				<ul class="mypage_orderlist05">
+					<li><strong>취소</strong> <a href="">0건</a></li>
+					<li><strong>교환</strong> <a href="">0건</a></li>
+					<li><strong>반품</strong> <a href="">0건</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="mypage_div">
+			<ul class="mypage_ul01">
+				<li class="mypage_shop">
+					<h2 id="mypage_order01"></h2> <a href=""> <strong>Order</strong>
+						<br> <br> <span>주문내역조회</span>
+				</a> <br> <span class="mypage_span">고객님께서 주문하신 상품의 주문내역을
+						확인하실 수 있습니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+				<li class="mypage_shop">
+					<h2 id="mypage_order02"></h2> <a href=""> <strong>Profile</strong>
+						<br> <br> <span>회원 정보</span>
+				</a> <br> <span class="mypage_span">회원이신 고객님의 개인정보를 관리하는
+						공간입니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+				<li class="mypage_shop">
+					<h2 id="mypage_order03"></h2> <a href=""> <strong>Wishlist</strong>
+						<br> <br> <span>관심상품</span>
+				</a> <br> <span class="mypage_span">관심상품으로 등록하신 상품의 목록을
+						보여드립니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+				<li class="mypage_shop">
+					<h2 id="mypage_order04"></h2> <strong>Mileage</strong> <br> <br>
+					<span>적립금</span> <br> <a href="">적립된 포인트 : 0원</a> <br> <a
+					href="">사용할수 있는 포인트 : 0원</a> <br> <span class="mypage_span">적립금은
+						상품구매 시 사용하실 수 있습니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+			</ul>
+			<ul class="mypage_ul01">
+				<li class="mypage_shop">
+					<h2 id="mypage_order05"></h2> <strong>Coupon</strong> <br> <br>
+					<a href="javascript:openPop()">쿠폰확인하기</a> <br> <span
+					class="mypage_span">고객님이 보유하고 계신 쿠폰내역을 보여드립니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+				<li class="mypage_shop">
+					<h2 id="mypage_order06"></h2> <a href=""> <strong>1:1
+							Inquiry details</strong> <br> <br> <span>1:1 문의내역</span>
+				</a> <br> <span class="mypage_span">고객님께서 1:1문의하신 내역입니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+				<li class="mypage_shop">
+					<h2 id="mypage_order07"></h2> <a href=""> <strong>Address</strong>
+						<br> <br> <span>배송 주소록 관리</span>
+				</a> <br> <span class="mypage_span">자주 사용하는 배송지를 등록하고 관리하실수
+						있습니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+				<li class="mypage_shop">
+					<h2 id="mypage_order08"></h2> <a href=""> <strong>Subscription</strong>
+						<br> <br> <span>정기배송 관리</span>
+				</a> <br> <span class="mypage_span">고객님께서 신청하신 정기배송의 신청 정보 및
+						내역을 확인하실수 있습니다.</span>
+					<p>
+						<a href=""></a>
+					</p>
+				</li>
+
+			</ul>
+		</div>
+
+	</div>
+	<div class="popup_layer" id="popup_layer" style="display: none;">
+		<div class="popup_box">
+			<div style="height: 10px; width: 375px; float: top;">
+				<a href="javascript:closePop();"></a>
+			</div>
+			<!--팝업 컨텐츠 영역-->
+			<div class="popup_cont">
+				<img src="/imgs/mypage_icon/my_coupon02.jpg">
+			</div>
+			<!--팝업 버튼 영역-->
+			<div class="popup_btn">
+				<a href="javascript:closePop();">닫기</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

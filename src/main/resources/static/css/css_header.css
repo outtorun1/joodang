@@ -1,0 +1,87 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Yeon Sung', cursive;
+}
+
+body {
+    min-height: 100%;
+}
+
+.row {
+    height: 205px;
+}
+
+#mainLogo {
+    margin-top: 15px;
+    width: 320px;
+
+}
+
+.right_menu_div {
+    position: relative;
+    display: inline-block;
+    vertical-align: baseline;
+    top: 20%;
+    margin-right: 100px;
+}
+
+.right_menu {
+    font-size: 25px;
+    color: black;
+}
+
+#logoImg {
+    display: inline-block;
+    text-align: center;
+}
+
+.main_header {
+    display: block;
+    position: relative;
+    text-align: center;
+    background-color: #F5F5F5
+
+}
+
+.navbarClass {
+    font-size: 25px;
+    margin-right: 140px;
+    color: #FFFFFF;
+}
+
+.navbar-collapse {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.right_menu_div {
+    position: absolute;
+    right: 0;
+}
+
+.right_menu:hover{
+    text-decoration: none;
+    color: #444444;
+}
+
+#navDiv {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    background-color: #444444;
+}
+
+.navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+    color: #FFFFFF;
+    background-color: rgb(83, 61, 40);
+}
+
+.dropdown-menu {
+    font-size: 23px;
+}
+
+
