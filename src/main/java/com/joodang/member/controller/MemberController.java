@@ -71,5 +71,9 @@ public class MemberController {
         }
     }
 
+    @GetMapping(value = "/meFindId")
+    public String memberFindId() {
+        return "member/meFindIdForm";
+    }
 
 }
