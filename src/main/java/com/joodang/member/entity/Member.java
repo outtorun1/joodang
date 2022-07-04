@@ -71,7 +71,7 @@ public class Member {
         member.setMZipcode("01234");
         member.setMAddress1("서울");
         member.setMAddress2("본사");
-        member.setMGender(memberFormDto.getMGender());
+//        member.setMGender(memberFormDto.getMGender());
 
         // 고객 지역 설정 : 고객 주소지에 속한 가맹점을 지정하기 위한 설정
 //        String[] spRegion = memberFormDto.getMAddress1().split(" ");

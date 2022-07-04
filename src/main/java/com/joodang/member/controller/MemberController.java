@@ -1,18 +1,15 @@
 package com.joodang.member.controller;
 
 import com.joodang.member.dto.MemberFormDto;
-import com.joodang.member.entity.Member;
+import com.joodang.member.model.MemberModel;
+import com.joodang.member.service.MemberModelService;
 import com.joodang.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,6 +39,9 @@ public class MemberController {
         return "member/meInsertSecondForm";
     }
 
+    private final MemberModelService memberModelService;
+
+
     @GetMapping(value = "/meMypage")
     public String memberMypage() {
 
@@ -49,31 +49,105 @@ public class MemberController {
     }
 
     private final MemberService memberService;
-    private final PasswordEncoder passwordEncoder;
 
-    // @Vaild 는 유효성 검사를 수행해주는 어노테이션
     @PostMapping(value = "/meInsert")
-    public String memberInsert(@Valid MemberFormDto memberFormDto,
-                               BindingResult bindingResult,
-                               Model model) {
-        if (bindingResult.hasErrors()) {    // 필드에 문제가 있으면
-            return "member/meInsertSecondForm";
-        }
+    public String memberInsert(MemberModel memberModel) {
+        int cnt = -999;
+        cnt = memberModelService.Insert(memberModel);
 
-        try {
-            Member member = Member.createMember(memberFormDto, passwordEncoder);
-//            model.addAttribute("mName", member.getMName());
-            memberService.saveMember(member);
-            return "member/meInsertThirdForm";
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-            return "member/meInsertSecondForm";
+        if (cnt == 1) {
+            return "/member/meInsertThirdForm";
+        } else {
+            return "/member/meInsertSecondForm";
         }
     }
 
-    @GetMapping(value = "/meFindId")
-    public String memberFindId() {
-        return "member/meFindIdForm";
+    @GetMapping(value = "/meEmailCheck/{email}")
+    public String meEmailCheck(@PathVariable("email") String email, Model model) {
+        MemberModel findMember = memberModelService.EmailCheck(email);
+        String message = "";
+        if(findMember == null) {
+            message = "OK";
+        } else {
+            message = "ERROR";
+        }
+        model.addAttribute("message", message);
+        model.addAttribute("email", email);
+        System.out.printf("[ meEmailCheck / GET / message : %s ] %s", message, System.lineSeparator());
+        return "member/meInsertSecondForm";
     }
+
+    @GetMapping(value = "/meFindEmail")
+    public String meFindEmail(Model model) {
+        String message = null;
+        model.addAttribute("message", message);
+        return "member/meFindEmailFirst";
+    }
+
+    @PostMapping(value = "/meFindEmail")
+    public String meFindEmail(MemberModel memberModel, Model model) {
+        String name = memberModel.getM_name();
+        String phone = memberModel.getM_phone();
+        MemberModel findMember = memberModelService.FindEmail(name, phone);
+        String message = "";
+        if (findMember != null){
+            model.addAttribute("message", message);
+            model.addAttribute("email", findMember.getEmail());
+            return "member/meFindEmailSecond";
+        } else {
+            message = "찾으시는 회원 정보가 없습니다.";
+            model.addAttribute("message", message);
+            return "member/meFindEmailFirst";
+        }
+    }
+
+    @GetMapping(value = "/meList")
+    public String memberList(Model model) {
+        List<MemberModel> memberList = memberModelService.SelectAll();
+        model.addAttribute("memberList", memberList);
+        return "member/meList";
+    }
+
+    @GetMapping(value = "/mePwResetFirst")
+    public String mePwResetFirst() {
+
+        return "member/mePwResetFirst";
+    }
+
+    @PostMapping(value = "/meFindMember")
+    public String findMember(MemberModel memberModel, Model model) {
+        MemberModel findMemberModel = memberModelService.SelectOnePwReset(memberModel);
+        String pwResetMsg = null;
+        if (findMemberModel != null) {
+            pwResetMsg = "OK";
+            model.addAttribute("pwResetMsg", pwResetMsg);
+            model.addAttribute("memberMode", findMemberModel);
+            return "member/mePwResetSecond";
+        } else {
+            pwResetMsg = "ERROR";
+            model.addAttribute("pwResetMsg", pwResetMsg);
+            return "/member/mePwResetFirst";
+        }
+    }
+
+    @PostMapping(value = "/mePwReset")
+    public String mePwReset(MemberModel memberModel, Model model) {
+        System.out.printf("[ mePwReset / POST : %s ]%s", memberModel.toString(), System.lineSeparator());
+        int cnt = -999;
+        cnt = memberModelService.PasswordReset(memberModel);
+
+        String pwResetMsg = "";
+        if (cnt == 1) {
+            pwResetMsg = "RESET_COMPLETE";
+            model.addAttribute("pwResetMsg", pwResetMsg);
+            model.addAttribute("memberModel", memberModel);
+        } else {
+            pwResetMsg = "RESET_ERROR";
+            model.addAttribute("pwResetMsg", pwResetMsg);
+        }
+
+        return "member/mePwResetSecond";
+    }
+
 
 }
