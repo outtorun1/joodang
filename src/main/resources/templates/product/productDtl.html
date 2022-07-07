@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <title>상품 상세</title>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <th:block layout:fragment="css">
+        <style type="text/css">
+
+/* 상세페이지 최상단 div */
+.detail_box {
+	width: 100%;
+}
+
+/* 상세 이미지 */
+.detail_image {
+	float : left;
+	padding-left : 15%;
+	margin-top: 130px;
+}
+
+/* 상세 이름 */
+.detail_name {
+	display : inline-block;
+	width: 850px;
+	margin-bottom: 50px;
+}
+
+.product_name {
+	width : 50%;
+	text-align : left;
+	border-bottom : 1px solid #DEB887;
+}
+
+.product_name02 {
+	font-size : 35px;
+	font-weight : bolder;
+}
+
+/* 상세 내용 */
+.detail_contents01 {
+	width : 50%;
+	height : 70px;
+	border-bottom : 1px solid #DEB887;
+}
+
+.detail_contents02 {
+	width : 50%;
+	height : 200px;
+	margin-top : 20px;
+	margin-bottom : 20px;
+	border-bottom : 1px solid #DEB887;
+}
+
+.detail_contents03 {
+	width : 50%;
+	margin-top : 20px;
+	margin-bottom : 20px;
+	border-bottom : 1px solid #DEB887;
+}
+
+.contents01 {
+	height : 30px;
+	font-size : 20px;
+	font-weight : bolder;
+	text-align : center;
+}
+
+.contents02 {
+	height : 30px;
+	font-size : 20px;
+	text-align : center;
+}
+
+ .contents03 {
+	height : 70px;
+	paddign-bottom : 30px;
+ }
+
+.contents_01 {
+	padding-left : 30px;
+	font-size : 20px;
+	font-weight : bolder;
+	text-align : left;
+}
+
+.contents_02 {
+	padding-right : 30px;
+	font-size : 25px;
+	font-weight : bolder;
+	text-align : right;
+}
+
+
+
+/* 구입, 장바구니 버튼 */
+#buttonwhite {
+	margin-top : 20px;
+	display : flex;
+	justify-content: center;
+}
+#buttonwhite2 {
+	padding-top : 0px;
+}
+.buttonwhite {
+		display: inline-block; color: black; text-align: center;
+		border: 1px solid #DEB887; background-color: white;
+		width: 200px; height : 65px; padding: 15px;
+		margin-bottom : 10px; margin-top : 20px; margin-right : 10px;
+		font-size : 25px; font-weight : bolder; text-decoration:none !important;
+		border-radius: 10px;
+	}
+.buttonwhite:hover{background-color:#DEB887; color:white; border-radius: 10px;}
+/* 찜버튼 */
+.button_heart {
+	margin-top : 20px;
+	padding-top : 5px;
+	border : none;
+	outline : none;
+	font-size : 40px;
+	background-color : white;
+}
+
+.button:click {
+  background-color: red;
+}
+
+#heart-icon {
+	color : #DEB887;
+}
+
+<!--/* info div style */-->
+.infodiv{
+   width: 100%;
+   height: 150px;
+   text-align: center;
+   vertical-align: middle;
+   line-height: 150px;
+}
+.infodiv > p{
+   font-size: 33px;
+}
+.repImg{
+    width: 500px;
+    height: 400px;
+}
+        </style>
+    </th:block>
+    <!-- 사용자 스크립트 추가 -->
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+        $(document).ready(function(){
+
+            calculateToalPrice();
+
+            $("#count").change( function(){
+                calculateToalPrice();
+            });
+        });
+
+        function calculateToalPrice(){
+            var count = $("#count").val();
+            var price = $("#price").val();
+            var totalPrice = price*count;
+            $("#totalPrice").html(totalPrice + '원');
+        }
+
+        function order(){
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order";
+            var paramData = {
+                productId : $("#productId").val(),
+                count : $("#count").val()
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("주문이 완료 되었습니다.");
+                    location.href='/';
+                },
+                error : function(jqXHR, status, error){
+
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+
+                }
+            });
+        }
+
+        function addCart(){
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/cart";
+            var paramData = {
+                productId : $("#productId").val(),
+                count : $("#count").val()
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("상품을 장바구니에 담았습니다.");
+                    location.href='/';
+                },
+                error : function(jqXHR, status, error){
+
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+
+                }
+            });
+        }
+    </script>
+    </th:block>
+</head>
+
+<!-- 전체 div -->
+<div class="detail_box" layout:fragment="content">
+    <input type="hidden" id="productId" th:value="${product.id}">
+    <div class="infodiv"><p class="infop">상품 상세보기</p></div>
+    <!-- image -->
+    <div class="detail_image">
+        <div>
+            <img th:src="${product.productImgDtoList[0].imgUrl}" class="rounded repImg" th:alt="${product.productNm}">
+        </div>
+    </div>
+    <!-- 상세 내용 -->
+    <div class="detail_name">
+        <!-- 상품 이름 -->
+        <div class="product_name">
+            <h3 class="product_name01">[[${product.productCategorys}]]</h3>
+            <h2 class="product_name02">[[${product.productNm}]]</h2><br>
+        </div>
+        <br>
+        <!-- 상세내용, 수량 -->
+        <table class="detail_contents01">
+            <tr class="contents01">
+                <td>용량(ml)</td>
+                <td>도수(%)</td>
+                <td>양조장</td>
+            </tr>
+            <tr class="contents02">
+                <td>[[${product.ml}]]</td>
+                <td>[[${product.alcohol}]]</td>
+                <td>[[${product.brewage}]]</td>
+            </tr>
+        </table>
+        <!-- 판매가, 배송비, 포인트, 수량 및 금액 -->
+        <table class="detail_contents02">
+            <tr>
+                <td class="contents_01">판매가</td>
+                <td class="contents_02">[[${product.price}]]</td>
+            </tr>
+            <tr>
+                <td class="contents_01">배송비</td>
+                <td class="contents_02">2,500원</td>
+            </tr>
+            <!--<tr>
+                <td class="contents_01">포인트</td>
+                <td class="contents_02">0</td>
+            </tr>-->
+            <tr>
+                <td class="contents_01">수량</td>
+                <td class="contents_02">
+                    <input type="number" name="count" id="count" class="form-control" value="1" min="1">
+                </td>
+
+            </tr>
+        </table>
+        <table class="detail_contents03">
+            <tr class="contents03">
+                <td class="contents_01">총 금액</td>
+                <td class="contents_02">7,600원</td>
+            </tr>
+        </table>
+        <!-- 구매, 장바구니, 찜 버튼 -->
+        <div id="buttonwhite">
+            <div id="buttonwhite1" th:if="${product.productSellStatus == T(com.joodang.product.constant.ProductSellStatus).SELL}">
+                <button type="button" class="btn btn-primary btn-lg buttonwhite" onclick="order()">주문하기</button>
+                <button type="button" class="btn btn-light border border-primary btn-lg buttonwhite" onclick="addCart()">장바구니 담기</button>
+            </div>
+            <!--<button class="button_heart">
+                <span id="heart-icon" class="glyphicon glyphicon-heart-empty"></span>
+            </button>-->
+        </div>
+    </div>
+</div>
+</html>

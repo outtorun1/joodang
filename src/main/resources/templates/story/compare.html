@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8">
+    <title>전통주비교</title>
+
+    <th:block layout:fragment="css">
+        <style>
+        /* info div style */
+        .infodiv{
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+        }
+        .infodiv > p{
+            font-size: 33px;
+        }
+
+        <!--/* content style */-->
+        .wrapcontent{
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        .divrow{
+            padding-top: 4%;
+            height: 100%;
+            float: left;
+            margin: auto;
+        }
+
+
+        <!--/* h5 text style */-->
+        .texth5{
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        <!--/* p text style */-->
+        .textp{
+            font-size: 18px;
+            color: #505050;
+        }
+
+        #content1{
+            display : flex;
+        }
+
+        #content2{
+            margin-top : 100px;
+            margin-bottom : 50px;
+            display : flex;
+        }
+
+        /* content1 style */
+        .content1{
+            width : 880px;
+            height : 600px;
+        }
+
+        .con1img img{
+            margin-left : 50px;
+            width: 450px;
+            height: 600px;
+        }
+
+        /* content2 style */
+        .content2{
+            margin-left : 50px;
+            width : 900px;
+            height : 500px;
+        }
+
+        #content2_head{
+            text-align : center;
+        }
+
+        .con2img img{
+            width: 450px;
+            height: 450px;
+        }
+section{
+			width: 100%;
+			height: 1500px;
+		}
+
+
+        </style>
+    </th:block>
+</head>
+<section layout:fragment="content">
+    <div class="infodiv"><p class="infop">전통주 비교</p></div>
+    <div class="wrapcontent">
+        <div class="divrow">
+
+            <!-- content1 -->
+            <div id="content1">
+                <div class="content1">
+                    <div class="contextdiv">
+                        <h5 class="texth5">약주류</h5>
+                        <p class="textp">
+                            가시오가피주, 산수유주, 홍삼주, 구기자주, 국화주 外 백미와 찹쌀 및 기타 곡류를 주원료로 하여 발효된 술덧을 여과하여 13~15도의 주도를 지닌 맑게 거른술이다.<br>
+                            삼한시대때부터 그 유래를 찾을 수 있으며, 고문헌에 기록된 이름만 하더라도 수백여종에 이르고 있으나 현재까지 계승, 보전된 술은 몇가지 정도이다.<br>
+                            차례상이나 제사에도 쓰이며 풍류와 도를 즐기던 선비층이 애용하였으며, 살균약주의 경우 보존기간이 상온에서 3~12개월 정도이나 냉장보관시에는 1년이상 보존이
+                            가능하다.
+                        </p>
+                    </div>
+                    <br>
+                    <div class="contextdiv">
+                        <h5 class="texth5">리큐르주</h5>
+                        <p class="textp">
+                            진도홍주, 계룡백일주, 전주이강주 外 곡류를 주원료한 술덧을 증류하여 제조법에 따른 향약재나 과실을 침출시켜 우려내어 그 원료에 따라 독특한 향과 맛을 냄으로써
+                            전통주류의 다양성을 보여주는 대표적인 주종이다.<br>
+                            20~40도 정도의 주도를 지니고 있으며, 장기 보존될수록 맛과 향이 살아난다.
+                        </p>
+                    </div>
+                    <br>
+                    <div class="contextdiv">
+                        <h5 class="texth5">혼성주</h5>
+                        <p class="textp">
+                            과하주 外 약주의 저장성을 높이기 위하여 약주에 소주를 넣어 빚은 술로서, 조선 초기부터 서울을 중심으로 여러 지방에서 빚어졌다.<br>
+                            여름에도 부드러운 약주맛과 시원한 소주의 두가지 맛을 동시에 느낄 수 있는 우리선조들의 지혜가 담긴 술이다.<br>
+                            일제 식민지때에도 일본인들이 혼성주의 맛에 반해 가장 많이 공출해가던 대표적인 술이다.<br>
+                            20~30도 정도의 주도를 지니고 있으며 약주와 소주의 오묘한 맛의 조화는 세계 어느나라에서도 찾아볼 수 없다.
+                        </p>
+                    </div>
+                    <br>
+                    <div class="contextdiv">
+                        <h5 class="texth5">과실주</h5>
+                        <p class="textp">
+                            복분자주, 머루주, 나주배술, 오디주 外
+                        </p>
+                    </div>
+                </div>
+                <div class="con1img">
+                    <img class="con1img1" src="/imgs/story/compare/compare1.png">
+                </div>
+            </div>
+
+            <!-- content2 -->
+            <div id="content2">
+                <div class="con2img">
+                    <img class="con1img2" src="/imgs/story/compare/compare2.png">
+                </div>
+                <div class="content2">
+                    <h5 id="content2_head" class="texth5">전통주류의 법규에 따른 비교</h5>
+                    <br>
+                    <div class="contextdiv">
+                        <h5 class="texth5">전통민속주</h5>
+                        <p class="textp">
+                            전통문화의 전수보존에 필요하다고 인정하여 문화체육부 장관이 추천하여 주류 심의회 심의를 거친 주류(문배주, 안동소주, 이강주, 계룡백일주, 과하주 등)
+                            농수산물 가공 산업육성 및 품질관리에 관한 법률 제6조에 의하여 농림부장관이 주류 부분의 전통식품명인으로 지정하고 국세청장에게 추천하여
+                            주류심의회 심의를 거친 주류 (청송불로주 등) 제주도 개발특별법에 의거 제주도지사가 국세청장과 협의하여 제조허가를 한 주류(제주오메기술 등)
+                            관광 진흥을 위하여 91. 6. 30 이전에 교통부 장관이 추천하여 주류심의회 심의를 거친주류 (승주사삼주, 경주황금주, 청주대추술 등)
+                        </p>
+                    </div>
+                    <br>
+                    <div class="contextdiv">
+                        <h5 class="texth5">특산주</h5>
+                        <p class="textp">
+                            복분자주, 평창머루주, 홍경천불로주, 진도홍주 등 농림, 생산자 단체주류라고 불리우며 농림부 장관이 추천하는 농민 또는 생산자단체가
+                            스스로 생산하는 농산물을 주원료로 하여 제조하는 주류를 말한다.
+                        </p>
+                    </div>
+                    <br>
+                    <div class="contextdiv">
+                        <h5 class="texth5">일반 주류</h5>
+                        <p class="textp">
+                            ㈜안동소주, 제비원안동소주 등 민속주와 유사한 방법으로 제조한 전통주성 일반주류
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</html>

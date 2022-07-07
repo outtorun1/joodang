@@ -18,14 +18,10 @@
                         <!-- 미로그인 상태 -->
                         <div sec:authorize="isAnonymous()">
                             <!-- 로그인 페이지로 이동 -->
-                            <a class="right_menu" href="/member/meMypage">
+                            <a class="right_menu" href="/member/meLogin">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
                             </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <!-- 로그인 페이지로 이동 -->
-                            <a class="right_menu" href="#">
-                                <span class="glyphicon glyphicon-heart"></span>
-                            </a>
+
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <!-- 회원가입 페이지로 이동 -->
                             <a class="right_menu" href="/member/meInsertFirst">
@@ -43,15 +39,11 @@
                             <!-- 장바구니 페이지로 이동 -->
 
                             <!-- 추후 수정 -->
-                            <a class="right_menu" href="#">
+                            <a class="right_menu" href="/cart">
                                 <span class="glyphicon glyphicon-shopping-cart"></span>
                             </a>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <!-- 찜리스트 페이지로 이동 -->
-                            <a class="right_menu" href="#">
-                                <span class="glyphicon glyphicon-heart"></span>
-                            </a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                             <!-- 마이 페이지로 이동 -->
                             <a class="right_menu" href="/member/meMypage">
                                 <span class="glyphicon glyphicon-user"></span>
@@ -74,50 +66,50 @@
                             <a class="navbarClass dropdown-toggle-story" data-toggle="dropdown"
                                href="#">전통주 이야기</a>
                             <ul class="dropdown-menu">
-                                <li><a href="/joodang/templates/story/history.html">전통주 역사</a></li>
+                                <li><a href="/story/history">전통주 역사</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/joodang/templates/story/compare.html">전통주 비교</a></li>
+                                <li><a href="/story/compare">전통주 비교</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/joodang/templates/story/eat.html">전통주 먹는 법</a></li>
+                                <li><a href="/story/eat">전통주 먹는 법</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="navbarClass dropdown-toggle-product" data-toggle="dropdown"
-                               href="#">전통주 장터</a>
+                               href="/productPage/totalproduct">전통주 장터</a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=contextPath%>/product/product.html">전통주 장터</a></li>
+                                <li><a href="/productPage/totalproduct">전통주 장터</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=contextPath%>/product/productRiceWine.html">탁주</a></li>
+                                <li><a href="/productPage/riceWine">탁주</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=contextPath%>/product/productChengJu.html">청주/약주</a></li>
+                                <li><a href="/productPage/chengju">청주/약주</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=contextPath%>/product/productFruitWine.html">과실주</a></li>
+                                <li><a href="/productPage/fruitWine">과실주</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=contextPath%>/product/productLiquor.html">증류주</a></li>
+                                <li><a href="/productPage/liquor">증류주</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<%=contextPath%>/product/productAlcoholic.html">기타 주류</a></li>
+                                <li><a href="/productPage/alcoholic">기타 주류</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="navbarClass dropdown-toggle-commuity" data-toggle="dropdown"
-                               href="#">커뮤니티</a>
+                               href="/relishPage/totalrelish">커뮤니티</a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">전통주에 어울리는 안주</a></li>
+                                <li><a href="/relishPage/totalrelish">전통주에 어울리는 안주</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">전통주 빚기</a></li>
+                                <li><a href="/brewagePage/brewageList">전통주 빚기</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="navbarClass dropdown-toggle-service" data-toggle="dropdown"
                                href="#">고객센터</a>
                             <ul class="dropdown-menu">
-                                <li><a href="/joodang/templates/service/faq.html">FAQ</a></li>
+                                <li><a href="/faq">FAQ</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/joodang/templates/service/announcement/announcement.html">공지사항</a></li>
+                                <li><a href="/announcement/anno_List">공지사항</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/joodang/templates/service/1by1/1by1_Inquiry.html">1:1문의</a></li>
+                                <li><a href="/OneByOne/obo_List">1:1문의</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/joodang/templates/service/way_to_come.html">오시는길</a></li>
+                                <li><a href="/way_to_come">오시는길</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -1,14 +1,19 @@
 package com.joodang.member.controller;
 
 import com.joodang.member.dto.MemberFormDto;
+import com.joodang.member.entity.Member;
 import com.joodang.member.model.MemberModel;
+import com.joodang.member.repository.MemberRepository;
 import com.joodang.member.service.MemberModelService;
 import com.joodang.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -35,12 +40,11 @@ public class MemberController {
     @GetMapping(value = "/meInsertSecond")
     public String memberInsertSecond(Model model) {
         // dto 객체(화면을 통하여 넘겨 주거나 받는 객체)를 모델에 바인딩하면 실제 request 영역에 데이터가 들어갑니다.
+        String message = null;
+        model.addAttribute("message", message);
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "member/meInsertSecondForm";
     }
-
-    private final MemberModelService memberModelService;
-
 
     @GetMapping(value = "/meMypage")
     public String memberMypage() {
@@ -48,32 +52,59 @@ public class MemberController {
         return "member/meMyForm";
     }
 
+    private final MemberModelService memberModelService;
+    private final PasswordEncoder passwordEncoder;
+
+
+
+
     private final MemberService memberService;
 
+    // @Vaild 는 유효성 검사를 수행해주는 어노테이션
     @PostMapping(value = "/meInsert")
-    public String memberInsert(MemberModel memberModel) {
-        int cnt = -999;
-        cnt = memberModelService.Insert(memberModel);
+    public String memberInsert(@Valid MemberFormDto memberFormDto,
+                               BindingResult bindingResult,
+                               Model model) {
+        if (bindingResult.hasErrors()) {    // 필드에 문제가 있으면
+            return "member/meInsertSecondForm";
+        }
 
-        if (cnt == 1) {
-            return "/member/meInsertThirdForm";
+        if (memberFormDto.getMPassword().equals(null)) {
+
         } else {
-            return "/member/meInsertSecondForm";
+
+        }
+
+        try {
+            Member member = Member.createMember(memberFormDto, passwordEncoder);
+//            model.addAttribute("mName", member.getMName());
+            memberService.saveMember(member);
+            return "member/meInsertThirdForm";
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            return "member/meInsertSecondForm";
         }
     }
 
-    @GetMapping(value = "/meEmailCheck/{email}")
-    public String meEmailCheck(@PathVariable("email") String email, Model model) {
-        MemberModel findMember = memberModelService.EmailCheck(email);
+    private final MemberRepository memberRepository;
+
+    @GetMapping(value = "/emailCheck/{email}")
+    public String emailCheckGET(@PathVariable("email") String email, Model model) throws Exception{
+        System.out.println("[ emailCheck / email : " + email + " ]");
+        Member findMember = memberRepository.findByEmail(email);
         String message = "";
-        if(findMember == null) {
-            message = "OK";
+        MemberFormDto memberFormDto = new MemberFormDto();
+        if (findMember == null) {
+            message = "ok";
+            memberFormDto.setEmail(email);
         } else {
-            message = "ERROR";
+            message = "not";
         }
+
         model.addAttribute("message", message);
-        model.addAttribute("email", email);
-        System.out.printf("[ meEmailCheck / GET / message : %s ] %s", message, System.lineSeparator());
+        model.addAttribute("memberFormDto", memberFormDto);
+        System.out.println("이메일 컨트롤러 진입");
+
         return "member/meInsertSecondForm";
     }
 

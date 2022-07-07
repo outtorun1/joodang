@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>결제 완료</title>
+
+    <style>
+
+                /*  결제 완료 Div */
+    #title {
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 150px;
+	font-size: 33px;
+    }
+
+    /*이미지 Div와 결제 정보 이미지*/
+    #ImgDv {
+	width: 1020px;
+	height: 100px;
+	margin: auto;
+	border-bottom: 1px solid black;
+    }
+
+   	#stepic{
+    	width: 1000px; height: 80px;
+    	margin-left: 10px;
+    }
+
+/*  전체 Div */
+    #wholeDv{
+    	width: 800px; height: 505px;
+    	margin: auto;
+    	padding-left: 15%;
+    	padding-right: 15%;
+    }
+    #dedv{
+    	width: 800px; height: 505px;
+    }
+
+    /*  이미지 Div와 이미지 */
+   	#ImgDv1{
+   		width: 300px; height: 160px;
+   		margin-top: 50px;
+   		margin-left: 250px;
+   	}
+    #img1{
+    	width: 300px; height: 150px;
+    }
+
+    /* 이미지 밑 글씨 */
+    #teDv{
+    	width: 400px; height: 100px;
+    	font-size: 30px;
+   		margin-left: 200px;
+    	text-align: center;
+    }
+
+    /* 버튼 영역 DIV*/
+    #WbuDv {
+		width: 800px;
+        height: 80px;
+        margin-top: 20px;
+        position:absolute;
+    }
+
+    /*버튼과 Div*/
+    #buDv {
+            margin-top: 10px;
+    }
+    #mainBu{
+        width: 180px; height: 60px;
+        font-size: 15px;
+        border-radius: 50px;
+    }
+    #mpBu{
+        width: 180px; height: 60px;
+        font-size: 15px;
+        margin-left: 130px;
+        border-radius: 50px;
+    }
+    #JangBu{
+        width: 180px; height: 60px;
+        margin-left: 110px;
+        font-size: 15px;
+        border-radius: 100px;
+    }
+
+    </style>
+
+</head>
+<body>
+    <div id="title"> <b>주문 완료</b> </div>
+    <div id="ImgDv">
+
+                    <img src="./../images/cart/Jlogo3.png" id="stepic">
+    </div>
+    <div id="wholeDv">
+        <div id="dedv">
+            <div id="ImgDv1">
+<!--                <img src="/webapp/images/JFinish.png" id="img1">-->
+                <img src="./../images/cart/JFinish.png" id="img1">
+            </div>
+            <div id="teDv">
+                <b>상품 결제가 완료되었습니다.</b><br>
+                <p>감사합니다.</p>
+            </div>
+            <div id="WbuDv">
+                <div id="buDv">
+                    <button id="mainBu"><b>메인으로 돌아가기</b></button>
+                    <button id="mpBu"><b>마이페이지로 돌어가기</b></button>
+                    <button id="JangBu"><b>장바구니 돌어가기</b></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

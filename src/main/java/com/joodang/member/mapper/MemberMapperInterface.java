@@ -26,6 +26,7 @@ public interface MemberMapperInterface {
     @Update("update members set m_password = #{m_password} where email = #{email}")
     int PasswordReset(@Param("m_password") String m_password, @Param("email") String email);
 
+
     @Insert("insert into members(email, m_password, m_name, m_phone, m_gender, m_zipcode, m_address1, m_address2, m_region) values(#{email}, #{m_password}, #{m_name}, #{m_phone}, #{m_gender}, #{m_zipcode}, #{m_address1}, #{m_address2}, #{m_region})")
     int Insert(@Param("memberModel") final MemberModel memberModel);
 

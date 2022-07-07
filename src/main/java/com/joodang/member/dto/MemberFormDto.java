@@ -24,11 +24,14 @@ public class MemberFormDto {
     @NotEmpty(message = "전화번호는 필수 입력 값입니다.")
     private String mPhone;
 
+    private String mRegion;
+
     private String mZipcode;
 
     private String mAddress1;
 
     private String mAddress2;
 
-    private Gender mGender;
+    private String gender; // 성별 종류
+//    private Gender mGender;
 }

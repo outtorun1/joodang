@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8">
+    <title>전통주역사</title>
+
+    <th:block layout:fragment="css">
+        <style>
+		section{
+			width: 100%;
+			height: 3750px;
+		}
+
+		/* info div style */
+		.infodiv{
+			width: 100%;
+			height: 150px;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 150px;
+		}
+		.infodiv > p{
+			font-size: 33px;
+		}
+
+		/* content style */
+		.wrapcontent{
+			padding-left: 15%;
+			padding-right: 15%;
+		}
+		.divrow{
+			padding-top: 4%;
+			height: 100%;
+			float: left;
+			margin: auto;
+		}
+		.content1, .content2, .content3, .content4, .content5, .content6, .content7, .content8, .content9, .content10, .content11{
+			display: flex;
+		}
+
+		/* h5 text style */
+		.texth5{
+			font-size: 22px;
+			font-weight: 900;
+		}
+
+		/* p text style */
+		.textp{
+			font-size: 18px;
+			color: #505050;
+		}
+
+		/* content1 style */
+		.content1{
+			padding-left: 20px;
+		}
+
+		/* content2 style */
+		.content2{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+		.content2 > .contextdiv{
+			padding-left: 30px;
+		}
+		.con2img img{
+			width: 300px;
+			height: 250px;
+		}
+
+		/* content3 style */
+		.content3{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+		.content3 > .contextdiv{
+			padding-left: 30px;
+		}
+
+		.con3img img{
+			width: 300px;
+			height: 250px;
+		}
+
+		/* content4 style */
+		.content4{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+
+		/* content5 style */
+		.content5{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+
+
+		/* content6 style */
+		.content6{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+
+		.con6img6{
+			width: 400px;
+			height: 340px;
+		}
+
+		/* content7 style */
+		.content7{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+
+		/* content8 style */
+		.content8{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+
+		.con8img8{
+			width: 400px;
+			height: 340px;
+		}
+
+		/* content9 style */
+		.content9{
+			padding-left: 20px;
+			padding-bottom: 40px;
+		}
+
+		.con9img9{
+			width: 400px;
+			height: 340px;
+		}
+
+		/* content10 style */
+		.content10{
+			padding-left: 20px;
+		}
+
+		/* content11 style */
+		.content11{
+			padding-left: 20px;
+			padding-left: 20px;
+			padding-top: 40px;
+		}
+
+        </style>
+    </th:block>
+</head>
+<section layout:fragment="content">
+    <div class="infodiv"><p class="infop">전통주 역사</p></div>
+    <div class="wrapcontent">
+        <div class="divrow">
+
+            <!-- content1 -->
+            <div class="content1">
+                <div class="contextdiv">
+                    <h5 class="texth5">조상들이 즐겼던 우리의 술</h5><br>
+
+                    <p class="textp">
+                        잘익은 과실이 땅에 떨어져 자연 발효되어 알콜성분을 지닌 술이 된다는 사실로 미루어 술의 기원은<br>
+                        아득히 먼 옛날부터였던 것을 짐작할 수 있다.<br>
+                        문헌에 의하면 삼국시대 이전 마한 시대부터 한해의 풍성한 수확과 복을 기원하면 맑은 곡주를 빚어<br>
+                        조상께 먼저 바치고 춤과 노래와 술마시기를 즐겼다고 한다. 이러한 사실로 미루어 보아 우리나라에서도<br>
+                        농사를 시작하였을 때부터 술을 빚어 마셨으며 모든 행사에서 술이 애용된 것을 알 수 있다. <br>
+                        술의 기원은 명확하지 않으나 우리나라에서는 탁주, 약주, 소주 등 세종류의 술이 오래전부터 전해 내<br>
+                        려왔고 그 제조방법으로 보아 탁주가 가장 오랜 역사를 가졌으며 탁주에서 재를 제거하여 청주(후에<br>
+                        약주라 칭함)가 되었고, 또 이를 증류하여 소주가 만들어졌다고 해석된다. <br>
+                        탁주는 일명 '막걸리'라 불려지며 이는 막 걸렀다고 하는데서 유래되었다고 한다. 약주는 탁주가 먼저<br>
+                        제조되면서 숙성이 거의 끝날쯤이면 술독 위에 맑게 뜨는 액체속에 '용수(싸리 나무로 만든것)'를 박<br>
+                        아 맑은 액체만 떠내는 것이 약주(청주)의 상례이다. <br>
+                        약주란 말은 본래 중국에서 약으로 쓰이는 술이란 뜻이나 우리나라의 약주는 약용주라는 뜻은 아니다.<br>
+                        우리나라에서 약주라 불리우게 된 것은 약300여 년 전부터인데 이조시대학자 서유거란 사람이 좋은 <br>
+                        술을 양조하였는데 그의 아호를 약봉이라 했으며, 그가 약현(현중구 중림동)에 살면서 제조하였다 하<br>
+                        여 약주라 부르게 된것으로 전하여 지고 있다.<br>
+                    </p>
+                </div>
+
+                <div class="con1img">
+                    <img class="con1img1" src="/imgs/story/history/history1.png">
+                </div>
+            </div>
+
+            <!-- content2 -->
+            <div class="content2">
+                <div class="con2img">
+                    <img class="con1img2" src="/imgs/story/history/history2.jpg">
+                </div>
+
+                <div class="contextdiv">
+                    <h5 class="texth5">삼국시대 이전부터 맑은 술 청주는 빚어졌다.</h5><br>
+
+                    <p class="textp">
+                        위지(魏志)고구려 전에 의하면 선장양(善藏釀)이라는 구절이 있는 것으로 보아 술을 비롯한 발효제품이 잘 만들어졌다는 것을<br>
+                        알 수 있고 당나라 풍류객들 간에도 신라주가 알려져 있었다고 한다. 이 발효의 바탕은 누룩이었고 누룩으로 술을 빚는 방법은<br>
+                        일본에 전해져서 일본술의 발달을 크게 진보시키기도 하였다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- content3 -->
+            <div class="content3">
+                <div class="con3img">
+                    <img class="con3img3" src="/imgs/story/history/history3.jpg">
+                </div>
+
+                <div class="contextdiv">
+                    <h5 class="texth5">백제시대 사람 인번(仁蕃)이 일본을 가르쳐…</h5><br>
+
+                    <p class="textp">
+                        중국의 유명한 시인 이상은(李商隱)같은 사람도 신라주를 찬양하는 시를 읊었다고 하니 이미 삼국시대에 곡식을 가지고 만든 곡주에도<br>
+                        막걸리가 아닌 청주가 있었던 것 같다. 일본의 고사기(古史記)에 보면 응신천황(應神天皇, AD27~312)때 백제의 인번이란 사람이<br>
+                        새로운 방법으로 미주(美酒)를 빚었기 때문에 그를 주신(酒神)으로 모셨다고 한다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- content4 -->
+            <div class="content4">
+                <div class="contextdiv">
+                    <h5 class="texth5">일본인이 자랑 하는 청주 그 뿌리는 한국이었다.</h5><br>
+
+                    <p class="textp">
+                        우리나라 사람으로 증보리(贈保利)형제가 새술의 창시자로 그들은 기록하고 있는데, 이 새로운 방법이 곧 누룩을 이용한 양조법이었을 것으로 짐작된다. 일본인들이 자랑하며
+                        자기들의 술이라는 청주가 실은<br>
+                        그 뿌리를 찾아보면 우리나라의 청주인 것이다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- content5 -->
+            <div class="content5">
+                <div class="contextdiv">
+                    <h5 class="texth5">고려시대의 술</h5><br>
+
+                    <p class="textp">
+                        고려시대에는 송, 원대의 양조법이 도입되었으며, 전래의 주류 양조법이 발전되어
+                        국(누룩)의 종류도 소맥국(小麥麴)과 미국(米麴)으로 이루어질 분 아니라 주품(酒品)도 다양해졌다. 고려사에 의하면고려<br>
+                        문종(1046년)때 왕이 마시는 술은 양온서(釀醞署)를 두어 빚어졌는데 청주와 법주 두종류로 구분되어 질항아리에넣고 명주로 봉하여 저장해 둔다 하였다.<br>
+                        청주(淸酒)는 한자 그대로 풀이하면 맑은 술로서 탁주(濁酒)인 흐린 술과 크게 대별된다. 동국이상국집의 시 속에 『발효된 술덧을 압착하여 맑은 청주를 얻는데 겨우 4~5병을
+                        얻을 뿐이다』 라 하였고 고려도경<br>
+                        에서는 『왕이 마시는 술은 양온서(釀醞署)에서 다스리는데, 청주(淸酒)와 법주(法酒)의 두 가지가 있어서 질항아리에 넣어 명주로 봉해서 저장해 둔다』고 하였다.<br>
+                        따라서 고려시대에는 발효된 술덧을 압착하거나 걸러내여 맑은 술을 빚었고 이미 덧술법도 사용하여 알코올 농도가 제법 높은 청주를 빚었을 것이다. 즉 발효가 끝난 술덧을 잘
+                        걸러 내어서 부드럽게 마실 수 있고<br>
+                        맑게 한 술이 청주라는 이름으로 불리웠을 것으로 생각된다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- content6 -->
+            <div class="content6">
+                <div class="con6img">
+                    <img class="con6img6" src="/imgs/story/history/history4_1.jpg">
+                </div>
+                <div class="con6img">
+                    <img class="con6img6" src="/imgs/story/history/history4_2.jpg">
+                </div>
+                <div class="con6img">
+                    <img class="con6img6" src="/imgs/story/history/history4_3.jpg">
+                </div>
+            </div>
+
+            <!-- content7 -->
+            <div class="content7">
+                <div class="contextdiv">
+                    <h5 class="texth5">조선시대의 술</h5><br>
+
+                    <p class="textp">
+                        조선시대의 대표주 : 우리나라 주조사상 주목할 일은 조선시대에 오면서 지금까지 유명주로 손꼽히는 술들이 이 시기에 정착되었다는 것이다.<br>
+                        이때 술은 고급화 추세를 보여 제조 원료도 맵쌀 위주에서 찹쌀로 바뀌고 발효 기술도 단(單)담금에서 중양법(重醸法)으로 바뀌면서 양보다 질 좋은 술들이 제조 되었는데, 이때
+                        양주(良酒)로 손꼽히던<br>
+                        주품들은 삼해주, 이화주,부의주, 하향주, 춘주, 국화주 등이었다. <br>
+                        특히 증류주는 국제화 단계로 발달하여 대마도를 통하여 일본, 중국 등에 수출이 빈번하였다. 그 당시 우리나라는 자가제조가 허용되어 자유로이 발전되었으나 중국에서는 국가가
+                        제조를 관장함에 따라 <br>
+                        우리술의 수출이 용이하여 더욱 발전되었던 것 같다. <br>
+                        조선후기에는 지방주가 전성기를 맞이하는데 지방마다 비전(秘傳)되는 술들이 맛과 멋을 내면서 노출되기 시작했다. <br>
+                        이때의 명주로는 서울의 약사춘, 여산의 호산춘, 충청의 노산춘, 평안의 벽향주, 김천의 청명주 등이 유명한 술들이다. <br>
+                        조선시대에 유입된 외래주 : 조선시대에는 다채로운 술들이 개발되었고 적지 않은 외래주가 공존하였다. 이 시대에 유입된 외래주로는 천축주(天竺酒), 미인주(美人酒),
+                        황주(황주), 섬라주(暹羅酒), <br>
+                        녹두주(綠豆酒), 무술주(戊戌酒), 계명주(鷄鳴酒), 정향주(程香酒) 등이다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- content8 -->
+            <div class="content8">
+                <div class="con8img">
+                    <img class="con8img8" src="/imgs/story/history/history5_1.jpg">
+                </div>
+                <div class="con7img">
+                    <img class="con8img8" src="/imgs/story/history/history5_2.jpg">
+                </div>
+                <div class="con7img">
+                    <img class="con8img8" src="/imgs/story/history/history5_3.jpg">
+                </div>
+            </div>
+
+            <!-- content9 -->
+            <div class="content9">
+
+                <div class="contextdiv">
+                    <p class="textp">
+                        조선말기의 술 : 19세기 조선말에는 국제화시대로 접어들게 됨에 따라 외국과의 정보교환이 쉬워지면서 양주문화가 도입되었으며, 주세법이 생기기 이전에 자가제조 및 판매가
+                        자유로웠던 관계로 술도 다양화<br>
+                        되고 주세법 창설 당시 제조장수는 무려 155,632개소나 되었다. <br>
+                        1907년 7월에 조선총독부령에 의한 주세법이 공포되었고 같은해 8월에 시행령이 공포되면서 전래주는 잠적하기 시작했으나 그래도 밀주가 성행하게 되자 1916년 1월에
+                        주류단속이 강화되는 가운데 모든<br>
+                        주류를 탁주, 약주, 소주로 획일화시켰다. <br>
+                        1917년 부터는 주류제조업의 정비가 시작되면서 자가양조는 전면적으로 금지되었고 1920년을 기점으로 신기술이 도입되어 재래식 누룩을 사용하던 방법에서 흑국, 황국의
+                        배양균을 사용하는 입국법이<br>
+                        활동됨가 동시에 전통주는 대부분 맥을 끊기게 되었다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- content10 -->
+            <div class="content10">
+
+                <div class="con10img">
+                    <img class="con10img10" src="/imgs/story/history/history6_1.jpg">
+                </div>
+
+                <div class="con10img">
+                    <img class="con10img10" src="/imgs/story/history/history6_2.jpg">
+                </div>
+
+                <div class="con10img">
+                    <img class="con10img10" src="/imgs/story/history/history6_3.jpg">
+                </div>
+            </div>
+
+            <!-- content11 -->
+            <div class="content11">
+                <div class="con11img">
+                    <img class="con11img11" src="/imgs/story/history/history7.png">
+                </div>
+                <div class="contextdiv">
+                    <h5 class="texth5">향후 발전 방향</h5><br>
+                    <p class="textp">우리나라에서 가장 전통적인 대중주라 할 수 있는 탁,약주가 보편화되지 못하고
+                        한계상황에 처해 있는 것은 탁,약주제조업자의 영세성으로 시설투자 및 주질개선이 현실적으로 이루어지지 않고 있기
+                        때문으로, 제조장의 대형화로 주질개선을 하여야 하고 수입주류에 대한 경쟁력을 제고하여야 한다. 장기간 탁주면허 동결로
+                        인한 기존 도매업체들의 독점폐단을 해소하고 사양되고 있는 탁,약주 산업의 경쟁력을 높이기 위하여 1997. 12.
+                        20. 도매면허를 개방하고 99.1.부터는 특정주류도매면허로 통합하였는바, 이는 행정규제를 철폐하고자 하는
+                        정부시책에도 부합되는 것으로서 탁주제조자들은 도매면허 개방취지에 따라 유통구조를 개선하여 타 주류와의 경쟁력을 강화해
+                        나가야 할 것이다.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+</html>

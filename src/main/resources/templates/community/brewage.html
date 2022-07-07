@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8">
+    <title>전통주 빚는 법</title>
+
+<th:block layout:fragment="css">
+<style>
+
+/* 전체 div 사이즈 박스 처리 */
+div {
+	box-sizing: border-box;
+}
+
+#product_page {
+	padding-left : 8%;
+	padding-right : 8%;
+}
+
+
+/* info div style */
+.infodiv{
+   width: 100%;
+   height: 150px;
+   text-align: center;
+   vertical-align: middle;
+   line-height: 150px;
+}
+.infodiv > p{
+   font-size: 33px;
+}
+
+
+/* 상품 관련 */
+
+.bar {
+	width : 80%;
+	margin-top : 30px;
+	margin-left : 10%;
+	height : 30px;
+	border-bottom : 3px solid black;
+}
+
+.column_name {
+	float : left;
+	width : 75%;
+	margin-top : 30px;
+	margin-left : 10%;
+	font-size : 30px;
+	font-weight : bolder;
+}
+
+.insert_video{
+	margin-top : 30px;
+}
+
+.line {
+	 border : 1px solid silver;
+	 width : 80%;
+	 margin-left : 10%;
+}
+
+.product_register {
+	text-align : left;
+	width : 80%;
+	margin-top : 50px;
+	margin-left : 13%;
+}
+
+.register {
+	display : inline-table;
+	width : 350px;
+	height : 250px;
+	margin : 20px;
+	text-align : center;
+	}
+
+/* 비디오 등록시 사이즈 */
+.video_box {
+	width:250px;
+    height:220px;
+    margin-right : 100px;
+}
+
+/* 설명 */
+
+.note {
+	margin-top : 35px;
+	font-size : 18px;
+	font-weight : bolder;
+}
+
+/* 구입, 장바구니 버튼 */
+.buttonwhite_main {
+	display : flex;
+	justify-content: center;
+}
+
+.buttonwhite2 {
+	padding-top : 0px;
+}
+.buttonwhite {
+		display: inline-block; color: black; text-align: center;
+		border: 1px solid #cccccc; background-color: white;
+		width: 75px; padding: 10px;
+		font-size:11px; font-weight: bolder; text-decoration:none !important;
+		border-radius: 10px;
+	}
+.buttonwhite:hover{background-color:#DEB887; color:white; border-radius: 10px;}
+/* 찜버튼 */
+.button_heart {
+	margin-top : 0px;
+	padding-top : 5px;
+	border : none;
+	outline : none;
+	font-size : 25px;
+	background-color : white;
+}
+
+
+</style>
+</th:block>
+</head>
+    <script type="text/javascript">
+
+function delete_check(){
+	if(confirm('정말로 삭제하시겠습니까?') == true){
+		location.href="<%=noForm%>prDelete&pr_no=${requestScope.bean.pr_no}";
+	} else {
+		return false;
+	}
+};
+
+</script>
+
+<body>
+<div id="product_page" layout:fragment="content">
+    <!-- 전통주 소개 -->
+    <div class="infodiv"><p class="infop">전통주 빚기</p></div>
+
+    <!-- 상품 -->
+    <div>
+        <div class="bar"></div>
+        <div class="column_name">탁주</div>
+        <!----------------유튜브 인서트 -------------------------------->
+        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+        <div class="insert_video">
+            <a href="<%=noForm%>brInsertForm">
+                <img width="40" height="40" src="./../images/product/insert_icon/insert.png">
+            </a>
+        </div>
+        <!--	</sec:authorize>>   -->
+        <hr class="line">
+        <div class="product_register">
+            <div class="register">
+                <div>
+                    <div class="video_box">
+                        <iframe width="350" height="250" src="https://www.youtube.com/embed/b0gLVtXYv3E"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="note">정말 맛있는 밤막걸리 만들기.
+                        5분만 투자해서 영상을 꼼꼼히 보면
+                        누구나 실수 없이 만들 수 있는 막걸리!
+                    </p>
+                </div>
+                <div class="buttonwhite_main">
+                    <div class="buttonwhite1">
+                        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+                        <a href="<%=noForm%>brInsertForm" class="buttonwhite">수정</a>
+                        <input type="button" name="delete_button"
+                               class="buttonwhite" value="삭제" onclick="delete_check();">
+                        <!--	</sec:authorize>   -->
+                    </div>
+                </div>
+            </div>
+            <div class="register">
+                <div>
+                    <div class="video_box">
+                        <iframe width="350" height="250" src="https://www.youtube.com/embed/b0gLVtXYv3E"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="note">정말 맛있는 밤막걸리 만들기.
+                        5분만 투자해서 영상을 꼼꼼히 보면
+                        누구나 실수 없이 만들 수 있는 막걸리!
+                    </p>
+                </div>
+                <div class="buttonwhite_main">
+                    <div class="buttonwhite1">
+                        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+                        <a href="<%=noForm%>" class="buttonwhite">수정</a>
+                        <input type="button" name="delete_button"
+                               class="buttonwhite" value="삭제" onclick="delete_check();">
+                        <!--	</sec:authorize>   -->
+                    </div>
+                </div>
+            </div>
+            <div class="register">
+                <div>
+                    <div class="video_box">
+                        <iframe width="350" height="250" src="https://www.youtube.com/embed/b0gLVtXYv3E"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="note">정말 맛있는 밤막걸리 만들기.
+                        5분만 투자해서 영상을 꼼꼼히 보면
+                        누구나 실수 없이 만들 수 있는 막걸리!
+                    </p>
+                </div>
+                <div class="buttonwhite_main">
+                    <div class="buttonwhite1">
+                        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+                        <a href="<%=noForm%>" class="buttonwhite">수정</a>
+                        <input type="button" name="delete_button"
+                               class="buttonwhite" value="삭제" onclick="delete_check();">
+                        <!--	</sec:authorize>   -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="bar"></div>
+        <div class="column_name">청주 / 약주</div>
+        <!----------------유튜브 인서트 -------------------------------->
+        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+        <div class="insert_video">
+            <a href="<%=noForm%>brInsertForm">
+                <img width="40" height="40" src="./../images/product/insert_icon/insert.png">
+            </a>
+        </div>
+        <!--	</sec:authorize>   -->
+        <hr class="line">
+        <div class="product_register">
+            <div class="register">
+                <div>
+                    <div class="video_box">
+                        <iframe width="350" height="250" src="https://www.youtube.com/embed/b0gLVtXYv3E"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="note">정말 맛있는 밤막걸리 만들기.
+                        5분만 투자해서 영상을 꼼꼼히 보면
+                        누구나 실수 없이 만들 수 있는 막걸리!
+                    </p>
+                </div>
+                <div class="buttonwhite_main">
+                    <div class="buttonwhite1">
+                        <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                            <a href="<%=noForm%>" class="buttonwhite">수정</a>
+                            <input type="button" name="delete_button"
+                                   class="buttonwhite" value="삭제" onclick="delete_check();">
+                        </sec:authorize>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="bar"></div>
+        <div class="column_name">과실주</div>
+        <!----------------유튜브 인서트 -------------------------------->
+        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+        <div class="insert_video">
+            <a href="<%=noForm%>brInsertForm">
+                <img width="40" height="40" src="./../images/product/insert_icon/insert.png">
+            </a>
+        </div>
+        <!--	</sec:authorize>   -->
+        <hr class="line">
+        <div class="product_register">
+            <div class="register">
+                <div>
+                    <div class="video_box">
+                        <iframe width="350" height="250" src="https://www.youtube.com/embed/b0gLVtXYv3E"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="note">정말 맛있는 밤막걸리 만들기.
+                        5분만 투자해서 영상을 꼼꼼히 보면
+                        누구나 실수 없이 만들 수 있는 막걸리!
+                    </p>
+                </div>
+                <div class="buttonwhite_main">
+                    <div class="buttonwhite1">
+                        <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                            <a href="<%=noForm%>" class="buttonwhite">수정</a>
+                            <input type="button" name="delete_button"
+                                   class="buttonwhite" value="삭제" onclick="delete_check();">
+                        </sec:authorize>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="bar"></div>
+        <div class="column_name">증류주</div>
+        <!----------------유튜브 인서트 -------------------------------->
+        <!-- 	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">  -->
+        <div class="insert_video">
+            <a href="<%=noForm%>brInsertForm">
+                <img width="40" height="40" src="./../images/product/insert_icon/insert.png">
+            </a>
+        </div>
+        <!--	</sec:authorize>   -->
+        <hr class="line">
+        <div class="product_register">
+            <div class="register">
+                <div>
+                    <div class="video_box">
+                        <iframe width="350" height="250" src="https://www.youtube.com/embed/b0gLVtXYv3E"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="note">정말 맛있는 밤막걸리 만들기.
+                        5분만 투자해서 영상을 꼼꼼히 보면
+                        누구나 실수 없이 만들 수 있는 막걸리!
+                    </p>
+                </div>
+                <div class="buttonwhite_main">
+                    <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                    <div class="buttonwhite1">
+
+                            <a href="<%=noForm%>" class="buttonwhite">수정</a>
+                            <input type="button" name="delete_button"
+                                   class="buttonwhite" value="삭제" onclick="delete_check();">
+                    </div>
+                    </sec:authorize>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

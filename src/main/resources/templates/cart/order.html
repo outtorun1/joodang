@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout1}">
+<head>
+  <title>상품 주문</title>
+  <th:block layout:fragment="css">
+  <style>
+/*쿠폰 및 포인트*/
+#titleDv {
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 150px;
+	font-size: 33px;
+  }
+
+    /* 전체 div */
+    #wholeDV {
+      width: 1100px;
+      height: 1600px;
+      margin: auto;
+    }
+
+    #wholeDV1{
+	width: 1600px;
+	height: 1000px;
+	margin-left: -230px;
+     }
+
+  /* 이미지 Div*/
+  #imgDV {
+      margin: auto;
+      width: 1003px;
+      height: 150px;
+      margin: auto;
+      border-bottom: 1px solid black;
+  }
+  #stepic{
+      width: 1000px; height: 100px;
+      margin-top: 15px;
+  }
+
+/*쿠폰 및 포인트*/
+#cpWhole {
+	width: 1200px;
+	height: 400px;
+	margin-top: 70px;
+	margin-left: 200px;
+	border-bottom: 1px solid black;
+}
+/*쿠폰 및 포인트(title)*/
+#cpTitle {
+	height: 50px;
+	font-size:25px;
+	border-bottom: 1px solid black;
+}
+
+/*쿠폰 큰 Div*/
+#couWholedv {
+	width: 590px;
+	height: 330px;
+	margin-top: 30px;
+	margin-right: 500px;
+}
+/*쿠폰 및 버튼*/
+#couDv1 {
+	width: 150px;
+	height: 50px;
+	font-size: 25px;
+	position: absolute;
+	margin-left: 50px;
+	text-align: center;
+}
+#couDv2 {
+	width: 350px;
+	height: 50px;
+	font-size: 25px;
+	text-align: center;
+	margin-left: 200px;
+}
+#open{
+    width: 100px;
+	height: 40px;
+}
+
+#usecoudv {
+	width: 210px;
+	height: 50px;
+	font-size: 25px;
+	text-align: center;
+	margin-top: 0px;
+}
+#usecou {
+	width: 200px;
+	height: 50px;
+	font-size: 25px;
+	position: absolute;
+	margin-left: 20px;
+	text-align: center;
+}
+#won{
+    width: 100px;
+	height: 40px;
+	margin-left: 330px;
+}
+/*포인트 전체 */
+#poWholedv {
+	width: 590px;
+	height: 330px;
+	margin-top: -380px;
+	margin-left: 610px;
+}
+/* 포인트 세부 DIV */
+#poDedv1 {
+	width: 520px;
+	height: 70px;
+	margin-top: 20px;
+}
+
+#poDedv2 {
+	width: 400px;
+	height: 70px;
+	margin-top: 30px;
+	margin-left: 100px;
+}
+#poDedv3 {
+	width: 520px;
+	height: 70px;
+	margin-top: 20px;
+}
+
+/*포인트 카테고리 Div*/
+#poCadv1 {
+	width: 200px;
+	height: 50px;
+	font-size: 25px;
+	position: absolute;
+	font-size: 25px;
+}
+#poCadv2 {
+	width: 200px;
+	height: 50px;
+	font-size: 25px;
+	position: absolute;
+	margin-left: -100px;
+}
+#poCadv3 {
+	width: 150px;
+	height: 50px;
+	font-size: 25px;
+	position: absolute;
+}
+
+/*포인트 입출력 DIV*/
+#poOutdv1 {
+	width: 350px;
+	height: 50px;
+	font-size: 25px;
+	text-align: right;
+	margin-left: 120px;
+}
+#prIndv {
+	width: 250px;
+	height: 50px;
+	font-size: 25px;
+	text-align: right;
+	margin-left: 120px;
+}
+#poOutdv2 {
+	width: 350px;
+	height: 50px;
+	font-size: 25px;
+	text-align: right;
+	margin-left: 120px;
+}
+#tePoint{
+  width: 200px;
+	height: 40px;
+}
+
+/* 쿠폰 할인 금액*/
+#dcWholedv {
+	width: 1200px;
+	height: 70px;
+	margin-left: 200px;
+}
+
+#dcpriceDv {
+	width: 1200px;
+	height: 50px;
+	font-size: 25px;
+	margin-top: 20px;
+	text-align: right;
+}
+
+/*모달*/
+#modal {
+	display: none;
+	margin-top: 350px;
+	margin-left: -50px;
+
+}
+
+#modal h2 {
+	text-align: center;
+}
+
+#modal button {
+	display: inline-block;
+	text-align: center;
+	width: 100px;
+	margin-left: 330px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+
+#modal .modal_content {
+	width: 450px; height: 260px;
+	margin-top: -630px;
+	margin-left: 70px;
+	border: 1px solid #666;
+}
+#modal .modal_layer {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: auto;
+}
+
+#img2{
+	width: 400px; height: 130px;
+	margin-left: 20px;
+
+}
+#modal_1{
+	width: 30px;
+	position: absolute;
+	margin-top: 60px;
+}
+
+#modal h2 {
+	text-align: center;
+}
+
+#modal button {
+	display: inline-block;
+	text-align: center;
+	width: 100px;
+	margin-left: 330px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+
+/*주문 정보 페이지(전체 DIv)*/
+#orderinfoWhole {
+	width: 1200px;
+	height: 800px;
+	margin-top: 15px;
+	margin-left: 200px;
+}
+
+
+
+/* 주문자 정보 및 수령/배송정보 Div*/
+#osinfo {
+	width: 600px;
+	height: 800px;
+	position: absolute;
+}
+
+/*주문자 정보 및 수령/배송정보 Div(제목)*/
+
+#orderinfo {
+	width: 600px;
+	height: 50px;
+	font-size: 25px;
+	border-bottom: 1px solid black;
+}
+/*이름 영역*/
+#onamedv {
+	width: 600px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+#oname {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#onameinput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#onamete {
+	width: 450px;
+	height: 30px;
+}
+
+/*이메일*/
+#oemaildv {
+	width: 600px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+#oemail {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#oemailinput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#oemailte {
+	width: 450px;
+	height: 30px;
+}
+
+/*연락처*/
+#ophdv {
+	width: 600px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+#oph {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#ophinput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#ophte {
+	width: 450px;
+	height: 30px;
+}
+
+/*수령/배송 정보*/
+#deliveryInfo {
+    width: 600px;
+	height: 50px;
+	font-size: 25px;
+	margin-top: 40px;
+	border-bottom: 1px solid black;
+}
+
+/* 수령자명 */
+#snamedv {
+	width: 600px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+#sname {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#snameInput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#snamete {
+	width: 450px;
+	height: 30px;
+}
+
+/* 연락처 */
+#sphdv {
+	width: 600px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+#sph {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#sphInput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#sphte {
+	width: 450px;
+	height: 30px;
+}
+/*주소*/
+#saddressdv {
+	width: 600px;
+	height: 50px;
+	margin-top: 20px;
+}
+
+#saddress {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#saddressInput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#saddresste1 {
+	width: 450px;
+	height: 30px;
+}
+
+#saddresste2 {
+	width: 450px;
+	height: 30px;
+	margin-top: 15px;
+}
+
+/*요청 사항 DIv*/
+#srequestdv {
+	width: 600px;
+	height: 50px;
+	margin-top: 60px;
+}
+
+#srequest {
+	width: 100px;
+	height: 35px;
+	font-size: 20px;
+	position: absolute;
+	text-align: center;
+}
+
+#srequestInput {
+	width: 500px;
+	height: 40px;
+	margin-left: 100px;
+}
+
+#srequeste {
+	width: 450px;
+	height: 30px;
+}
+
+#payWholedv {
+	width: 600px;
+	height: 800px;
+	margin-left: 610px;
+	margin-top: 50px;
+}
+
+#payinfo {
+	width: 600px;
+	height: 50px;
+	font-size: 25px;
+}
+
+/*결제정보 전체 DIv*/
+#payinfodv {
+	width: 590px;
+	height: 330px;
+	border: 1px solid black;
+}
+#paydv1 {
+	width: 580px;
+	height: 30px;
+	margin-top: 25px;
+}
+/* 결제정보 카테고리*/
+#paytotal {
+	width: 150px;
+	height: 30px;
+	font-size: 23px;
+	position: absolute;
+	text-align: center;
+}
+
+/* 결제정보 보여지는 Div*/
+#won1 {
+	width: 400px;
+	height: 30px;
+	margin-left: 150px;
+	text-align: right;
+	font-size: 23px;
+}
+
+#paydv2 {
+	width: 580px;
+	height: 30px;
+	margin-top: 25px;
+}
+/* 결제정보 카테고리*/
+#paydelpay {
+	width: 150px;
+	height: 30px;
+	font-size: 23px;
+	position: absolute;
+	text-align: center;
+}
+
+/* 결제정보 보여지는 Div*/
+#won2 {
+	width: 400px;
+	height: 30px;
+	margin-left: 150px;
+	text-align: right;
+	font-size: 23px;
+}
+
+#paydv3 {
+	width: 580px;
+	height: 30px;
+	margin-top: 25px;
+}
+/* 결제정보 카테고리*/
+#paymileage {
+	width: 150px;
+	height: 30px;
+	font-size: 23px;
+	position: absolute;
+	text-align: center;
+}
+
+/* 결제정보 보여지는 Div*/
+#won3 {
+	width: 400px;
+	height: 30px;
+	margin-left: 150px;
+	text-align: right;
+	font-size: 23px;
+}
+
+#paydv4 {
+	width: 580px;
+	height: 30px;
+	margin-top: 25px;
+}
+/* 결제정보 카테고리*/
+#paycoupon {
+	width: 150px;
+	height: 30px;
+	font-size: 23px;
+	position: absolute;
+	text-align: center;
+}
+
+/* 결제정보 보여지는 Div*/
+#won4 {
+	width: 400px;
+	height: 30px;
+	margin-left: 150px;
+	text-align: right;
+	font-size: 23px;
+}
+/*총 결제 금액*/
+#paytotalw {
+	width: 530px;
+	height: 70px;
+	margin-top: 40px;
+	margin-left: 30px;
+	border-top: 1px solid black;
+}
+
+#paytotaldv {
+	width: 150px;
+	height: 30px;
+	font-size: 23px;
+	position: absolute;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#wondv {
+	width: 430px;
+	height: 50px;
+	margin-left: 200px;
+	text-align: right;
+	font-size: 25px;
+}
+#won5 {
+	width: 300px;
+	height: 30px;
+	font-size: 23px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+/*상품 교환민 환불 규정(전체)*/
+#reguw {
+	width: 590px;
+	height: 250px;
+	margin-top: 15px;
+}
+/*상품 교환민 환불 규정(title)*/
+#regutitle {
+	width: 590px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+}
+/*내용 Div*/
+#regutext {
+	width: 590px;
+	height: 200px;
+	font-size: 15px;
+}
+
+/*페이지 넘기기 버튼(큰 DIv)*/
+#butnw {
+	width: 1200px;
+	height: 200px;
+	margin-top: 450px;
+	margin-left: -40px;
+}
+#butnwdv {
+	width: 1200px;
+	height: 80px;
+	position: absolute;
+	margin-top: 50px;
+}
+#btn1{
+    width: 230px; height: 60px;
+    font-size: 25px;
+    float: left;
+    border-radius: 50px;
+}
+#btn2{
+    width: 230px; height: 60px;
+    font-size: 25px;
+    margin-left: 250px;
+    border-radius: 50px;
+}
+#btn3{
+    width: 230px; height: 60px;
+    margin-left: 250px;
+    font-size: 25px;
+    border-radius: 50px;
+}
+</style>
+  </th:block>
+</head>
+<div layout:fragment="content">
+<div id="titleDv">
+  <b>주문서 작성</b>
+</div>
+<div id="wholeDV">
+  <div id="wholeDV1">
+    <div id="imgDV">
+      <img th:src=" @{images/cart/Jlogo2.png}" id="stepic">
+    </div>
+    <div id="cpWhole">
+      <div id="cpTitle">
+        <b>쿠폰 및 포인트</b>
+      </div>
+      <div id="couWholedv">
+        <div id="couDv1">쿠폰 :</div>
+        <div id="couDv2">
+          <button type="button" id="open">쿠폰함 열기</button><br>
+        </div><br>
+        <div id="usecoudv">
+          <div id="usecou"><br>사용할 쿠폰 금액: </div>
+          <div id="won"><br>원</div>
+        </div>
+      </div>
+
+      <div id="modal">
+
+        <div class="modal_content">
+          <h2>쿠폰함</h2>
+          <div id="modal_1"><input type="checkbox"></div>
+          <div id="modal_2">
+            <img th:src="@{images/cart/my_coupon.jpg}" id="img2"></div>
+          <button type="button" id="modal_close_btn">닫기</button>
+        </div>
+        <div class="modal_layer"></div>
+      </div>
+      <script th:inline="javascript">
+					document.getElementById("open").onclick = function() {
+						document.getElementById("modal").style.display = "block";
+						document.getElementById("poWholedv").style.marginTop= "-365px";
+                        document.getElementById("usecoudv").style.visibility = "hidden";
+					}
+
+					document.getElementById("modal_close_btn").onclick = function() {
+						document.getElementById("modal").style.display = "none";
+						document.getElementById("poWholedv").style.marginTop= "-380px";
+						document.getElementById("usecoudv").style.visibility = "visible";
+					}
+				</script>
+      <div id="poWholedv">
+        <div id="poDedv1">
+          <div id="poCadv1"><br>고객님의 포인트</div>
+          <div id="poOutdv1"><br>원</div>
+        </div>
+        <div id="poDedv2">
+          <div id="poCadv2"><br>사용할 포인트</div>
+          <div id="prIndv"><br>
+            <input type="text" id="tePoint" placeholder="사용하실 포인트르 적어주세요">
+          </div>
+        </div>
+        <div id="poDedv3">
+          <div id="poCadv3"><br>남은 포인트</div>
+          <div id="poOutdv2"><br>원</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="dcWholedv">
+      <div id="dcpriceDv">
+        <b> 할인 금액: 원</b>
+      </div>
+    </div>
+    <div id="orderinfoWhole">
+      <div id="osinfo">
+        <div id="orderinfo">
+          <b>주문자 정보</b>
+        </div>
+        <div>
+          <div id="onamedv">
+            <div id="oname">이름</div>
+            <div id="onameinput">
+              <input type="text" id="onamete" placeholder="이름을 입력하세요.">
+            </div>
+          </div>
+
+          <div id="oemaildv">
+            <div id="oemail">이메일</div>
+            <div id="oemailinput">
+              <input type="text" id="oemailte" placeholder="이메일을 입력하세요.">
+            </div>
+          </div>
+
+          <div id="ophdv">
+            <div id="oph">연락처</div>
+            <div id="ophinput">
+              <input type="text" id="ophte" placeholder="연락처 입력하세요.">
+            </div>
+          </div>
+        </div>
+        <div id="deliveryInfo">
+          <b>수령/배송 정보</b>
+        </div>
+        <div>
+          <div id="snamedv">
+            <div id="sname">수령자명</div>
+            <div id="snameInput">
+              <input type="text" id="snamete" placeholder="이름을 입력하세요.">
+            </div>
+          </div>
+
+          <div id="sphdv">
+            <div id="sph">연락처</div>
+            <div id="sphInput">
+              <input type="text" id="sphte" placeholder="연락처를 입력하세요.">
+            </div>
+          </div>
+
+          <div id="saddressdv">
+            <div id="saddress">주소</div>
+            <div id="saddressInput">
+              <input type="text" id="saddresste1" placeholder="주소를 입력하세요.">
+              <input type="text" id="saddresste2" placeholder="상세 주소를 입력하세요.">
+            </div>
+          </div>
+
+          <div id="srequestdv">
+            <div id="srequest">요청 사항</div>
+            <div id="srequestInput">
+              <input type="text" id="srequeste" placeholder="ex) 부재시 경비실에 놔 주세요.">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="payWholedv">
+        <div id="payinfo">
+          <b>결제 정보</b>
+        </div>
+        <div id="payinfodv">
+          <div id="paydv1">
+            <div id="paytotal">총 구매금액 :</div>
+            <div id="won1">원</div>
+          </div>
+
+          <div id="paydv2">
+            <div id="paydelpay">배송비 :</div>
+            <div id="won2">원</div>
+          </div>
+
+          <div id="paydv3">
+            <div id="paymileage">마일리지 :</div>
+            <div id="won3">원</div>
+          </div>
+
+          <div id="paydv4">
+            <div id="paycoupon">쿠폰 :</div>
+            <div id="won4">원</div>
+          </div>
+          <div id="paytotalw">
+            <div id="paytotaldv">
+              총 결제 금액 :
+            </div>
+            <div id="wondv">
+              <div id="won5">원</div>
+            </div>
+          </div>
+        </div>
+        <div id="reguw">
+          <div id="regutitle">
+            <b> 상품 교환 및 환불 규정 </b>
+          </div>
+          <div id="regutext">
+            <b>1. 상품 교환/환불은 구매일로부터 7일 이내 각 지점에서 가능합니다.</b><br> 영수증 지참,
+            카드 결제시에는 영수증 및 사용카드 지참하여 방문하시면 구매 내역 확인 후 정상품에 한해 동일 상품 또는 동일
+            가격대로 교환이 가능합니다.<br> <br>
+            <b> 2. 아래에 해당하는 경우 교환 및 환불이 불가합니다.</b><br> - 소비자의 고의, 과실로 인해
+            상품 파손, 훼손된 경우<br> - 상품 구매후 개봉 및 내외부 포장 파손시<br> - 상품의
+            구조, 기능을 개조 또는 변조하여 문자게 발생된 경우<br> - 천재지변에 의해 발생된 피해<br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="butnw">
+    <div id="butnwdv">
+      <button id="btn1">장바구니 돌아가기</button>
+      <button id="btn2">결제 하기</button>
+      <button id="btn3">취소</button>
+    </div>
+  </div>
+</div>
+</div>
+</html>

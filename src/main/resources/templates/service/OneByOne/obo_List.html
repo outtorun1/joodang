@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout1}">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>1:1 문의</title>
+
+    <th:block layout:fragment="css">
+    <style type="text/css">
+		section{
+			width: 100%;
+		}
+
+		/* info div style */
+		.infodiv{
+			width: 100%;
+			height: 150px;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 150px;
+		}
+		.infodiv > p{
+			font-size: 33px;
+		}
+
+		/* content style */
+		.wrapcontent{
+			padding-left: 15%;
+			padding-right: 15%;
+		}
+
+		/* headuldiv style */
+		.headuldiv{
+			width: 100%;
+			float: left;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+
+		.headul{
+			margin: 0 auto;
+		}
+
+		.headul li{
+			display: inline-block;
+			text-align: center;
+			width: 200px;
+			height: 40px;
+			font-size: 19px;
+			padding-top: 6.5px;
+			cursor: pointer;
+		}
+		.headul li:hover{
+			background-color: black;
+			color: white;
+		}
+
+		/* 검색 부분 style */
+		.search_box{
+			width: 100%;
+			padding-top: 90px;
+			height: 150px;
+			text-align: center;
+		}
+
+		.sh_text{
+			width: 350px;
+			height: 50px;
+		}
+
+		.search_box button {
+		    width: 44px;
+		    height: 43px;
+		    line-height: 30px;
+		    border: 0;
+<!--		    background: url('../../images/icon/icon_search.png') no-repeat 50%;-->
+		    background-size: cover;
+		    font-size: 13px;
+		    font-color:white;
+		    padding-top: 7px;
+		    margin-left: 15px;
+		}
+
+		/* table style */
+		table {
+		    width: 100%;
+		    border-spacing: 0;
+		    table-layout: fixed;
+		    display: table;
+    		border-collapse: separate;
+        	text-indent: initial;
+            border-color: grey;
+		}
+		.tbl_list{
+			margin-top: 35px;
+		    border-top: 1px solid #555;
+		    height: 100%;
+		    padding-bottom: 20px;
+		}
+
+		th.num, th.title, th.date, th.writer{
+			height: 60px;
+			color: #333333;
+			font-size: 16px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.tbl_list th, td{
+			text-align: center;
+		}
+
+		.tbl_list td{
+			height: 50px;
+			color: #555555;
+			font-size: 16px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		.tbl_list tr:last-child{
+			border: none;
+		}
+		.num{
+			width: 15%;
+		}
+
+		.title{
+			width: 70%;
+		}
+		.date{
+			width:15%;
+		}
+
+		/* 글쓰기 버튼 */
+		.btn-group{
+			float: right;
+			margin-bottom: 40px;
+		}
+
+		.btn1{
+			width: 80px;
+			height: 40px;
+			background-color: black;
+			color:#ffffff;
+		}
+			.btn{
+		    width: 30px; height: 25px;
+		    font-size: 18px;
+		    display: block;
+		    border: 1px solid black;
+		    text-align:center;
+            float:left;
+		}
+		.paging{
+		    width: 170px; height: 100px;
+            margin: auto;
+            margin-top: 30px;
+		}
+		a{
+		    font-size: 18px;
+		    color:black;
+		    text-decoration: none;
+		}
+		p{
+		    font-size: 18px;
+		}
+	</style>
+    </th:block>
+</head>
+<div layout:fragment="content">
+        <!-- 상단 컬럼 이름 -->
+        <div class="infodiv"><p>1:1 문의</p></div>
+        <div class="wrapcontent">
+
+            <!-- 컬럼 분할 이름 -->
+            <div class="headuldiv">
+                <ul class="headul">
+                    <li th:onclick="location.href='/faq'">FAQ</li>
+                    <li th:onclick="location.href='/announcement/anno_List'" style="border-bottom: 3px solid black;">공지사항</li>
+                    <li th:onclick="location.href='/OneByOne/obo_List'">1:1 문의</li>
+                </ul>
+            </div>
+
+
+            <!-- 검색 영역 -->
+            <div class="search_box">
+                <form th:action="@{/OneByOne/obo_List}" method="get">
+                <input type="text" class="sh_text" name="searchKeyword" placeholder="검색어를 입력해주세요.">
+                <button type="submit" class="btn1">검색</button>
+                </form>
+            </div>
+
+                <!-- 글쓰기 버튼 -->
+            <form method="get">
+                <div class="btn-group" sec:authorize="isAuthenticated()">
+                    <div class="">
+                        <button type="submit" class="btn1" th:formaction="@{/OneByOne/obo_Insert}">글쓰기</button>
+                    </div>
+                </div>
+
+            <!-- 컨텐츠 영역 -->
+            <div class="tbl_div">
+                <table class="tbl_list">
+                    <colgroup>
+                        <col class="num">
+                        <col class="title">
+                        <col class="date">
+                    </colgroup>
+
+                    <!-- thead 영역 -->
+                    <thead>
+                    <tr>
+                        <th class="num">번호</th>
+                        <th class="title">제목</th>
+                        <th class="writer">작성자</th>
+                        <th class="date">작성일</th>
+                    </tr>
+                    </thead>
+
+<!--                     tbody 영역-->
+                    <tbody>
+                        <tr  th:each="OneByOne : ${list}">
+                            <td class="num" th:text="${OneByOne.no}"></td>
+                            <td class="title" >
+                                <a th:if="${OneByOne.secret.equals(true)}"  th:href="@{/OneByOne/secretPass(no=${OneByOne?.no})}"> 비밀글 입니다.</a>
+
+                                <a  th:if="${OneByOne.secret.equals(false)}" th:text="${OneByOne.title}" th:href="@{/OneByOne/obo_Detail(no=${OneByOne?.no})}"></a>
+                            </td>
+                            <td class="writer" th:text="${OneByOne.writer}"></td>
+                            <td class="date" th:text="${OneByOne.redTime}"></td>
+                        </tr>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="paging">
+                    <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                        <a role="button" class="btn" th:if="${page != nowPage}" th:href="@{/OneByOne/obo_List(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
+                        <Strong class="btn" th:if="${page == nowPage}" th:text="${page}" style="color : red"></Strong>
+                    </th:block>
+                </div>
+            </div>
+            </form>
+        </div>
+</div>
+</html>

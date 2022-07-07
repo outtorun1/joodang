@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>오시는 길</title>
+
+<th:block layout:fragment="css">
+    <style>
+
+		section{
+			width: 100%;
+		}
+
+		ul{
+			list-style: none;
+		}
+		<!--/* info div style */-->
+
+		.infodiv{
+			width: 100%;
+			height: 150px;
+			text-align: center;
+			vertical-align: middle;
+			line-height: 150px;
+		}
+		.infodiv > p{
+			font-size: 33px;
+		}
+
+		<!--/* content style */-->
+		.wrapcontent{
+			padding-left: 15%;
+			padding-right: 15%;
+		}
+
+		<!--/* 지도 style */-->
+		.conmap{
+			width: 100%;
+			height: 400px;
+			padding-left: 10%;
+			padding-right: 10%;
+			padding-bottom: 40px;
+		}
+
+		<!--/* 지도 크기 조절 */-->
+
+		.mapimg{
+			height: 100%;
+		}
+		/* text style */
+		.wraptext{
+			display: flex;
+			padding-left: 10%;
+			padding-right: 10%;
+		}
+
+		/* 본사 div */
+		.head_office{
+			padding-left: 7px;
+			width: 600px;
+			height: 230px;
+		}
+
+		.headui li{
+			color: #505050;
+			font-size: 15px;
+		}
+
+		/* 소셜 div */
+		.social{
+			padding-left: 100px;
+			float: left;
+			width: 500px;
+		}
+
+		.spanhead{
+			font-size: 22px;
+			font-weight: 700;
+		}
+
+		.iconul li{
+			float: left;
+		}
+		.iconul li > img{
+			padding-left: 8px;
+		}
+
+		.icon{
+			cursor: pointer;
+		}
+	</style>
+</th:block>
+
+</head>
+
+<div layout:fragment="content">
+        <div class="infodiv"><p class="infop">오시는 길</p></div>
+        <div class="wrapcontent">
+            <div class="conmap">
+                <!-- 1. 지도 노드 -->
+                <div id="daumRoughmapContainer1653450568329" class="root_daum_roughmap root_daum_roughmap_landing mapimg" style="width: 100%;"></div>
+            </div>
+
+            <!--
+                2. 설치 스크립트
+                * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+            -->
+            <script charset="UTF-8" class="daum_roughmap_loader_script"
+                    src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+            <!-- 3. 실행 스크립트 -->
+            <script charset="UTF-8">
+                    new daum.roughmap.Lander({
+                        "timestamp" : "1653450568329",
+                        "key" : "2ada3",
+                        <!--/* "mapWidth" : "640",*/-->
+                        "mapHeight" : "400"
+                    }).render();
+                </script>
+            <div class="wraptext">
+                <div class="head_office">
+                    <h3><span class="spanhead">본사</span></h3>
+                    <ul class="headui">
+                        <li>주소 : 서울 금천구 가산디지털2로 123 월드메르디앙2차</li>
+                        <li>TEL : 000-111-2222 </li>
+                        <li>FAX : 000-111-2222</li>
+                    </ul>
+                </div>
+
+                <div class="social">
+                    <h3><span class="spanhead">Social Media</span></h3>
+                    <ul class="iconul">
+                        <li><img alt="naver" class="icon" src="/imgs/icon/ico_naver.png" onclick="location.href='https://section.blog.naver.com/Search/Post.naver?pageNo=1&rangeType=ALL&orderBy=sim&keyword=%EC%A0%84%ED%86%B5%EC%A3%BC';"></li>
+                        <li><img alt="kakao" class="icon" src="/imgs/icon/ico_kakao.png" onclick="location.href='https://accounts.kakao.com/login?continue=https://story.kakao.com/';"></li>
+                        <li><img alt="google" class="icon" src="/imgs/icon/ico_google.png" onclick="location.href='https://www.google.com/search?q=%EC%A0%84%ED%86%B5%EC%A3%BC&sxsrf=ALiCzsbXjQRE0LaiVi5QGbLJ5GffF_CT2w%3A1653469977478&source=hp&ei=GfONYvKGG5G3mAWYnIDIBA&iflsig=AJiK0e8AAAAAYo4BKSLbGNXllQ-EvV3rpay1ykFlXOHb&ved=0ahUKEwiy95vVp_r3AhWRG6YKHRgOAEkQ4dUDCAk&uact=5&oq=%EC%A0%84%ED%86%B5%EC%A3%BC&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBAgjECcyBAgjECcyCwguEIAEELEDEIMBMgsILhCABBDHARCvATIFCAAQgAQyCwguEIAEEMcBEK8BMgUIABCABDIFCAAQgAQyBQgAEIAEOgcIIxDqAhAnOggIABCABBCxAzoICC4QgAQQsQM6CwgAEIAEELEDEIMBOg4ILhCABBCxAxDHARDRAzoRCC4QgAQQsQMQgwEQxwEQ0QM6BwgAEIAEEAo6BAgAEAM6BQguEIAEOg4ILhCABBCxAxCDARDUAlCvA1i9DmC2EGgFcAB4AIABiQGIAesHkgEDNi40mAEAoAEBsAEK&sclient=gws-wiz';"></li>
+                        <li><img alt="facebook" class="icon" src="/imgs/icon/ico_face.png" onclick="location.href='https://www.facebook.com/';"></li>
+                        <li><img alt="instar" class="icon" src="/imgs/icon/instar.png" onclick="location.href='https://www.instagram.com/';"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>
+
+</html>

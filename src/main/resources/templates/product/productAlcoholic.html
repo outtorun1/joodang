@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>기타주류</title>
+    <th:block layout:fragment="css">
+        <!-- Link Swiper's CSS -->
+        <link
+                rel="stylesheet"
+                href="https://unpkg.com/swiper/swiper-bundle.min.css"
+        />
+        <style>
+<!--/* 전체 div 사이즈 박스 처리 */-->
+div {
+	box-sizing: border-box;
+}
+
+#product_page {
+	padding-left : 8%;
+	padding-right : 8%;
+}
+
+.category {
+	text-align : center;
+}
+
+
+<!--/* 카테고리 가로 정렬 */-->
+#category {
+	display : flex;
+	justify-content: center;
+	width : 100%;
+	margin-top : 30px;
+	height : 152px;
+}
+
+<!--/* info div style */-->
+.infodiv{
+   width: 100%;
+   height: 150px;
+   text-align: center;
+   vertical-align: middle;
+   line-height: 150px;
+}
+.infodiv > p{
+   font-size: 33px;
+}
+
+
+<!--/* 카테고리 아이콘 */-->
+.category_icon1 {
+	background-image: url("/imgs/product/category/ricewine.png");
+	background-color: transparent;
+    background-size : 70%;
+    background-position : center;
+    background-repeat : no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-right : 10px;
+}
+
+.category_icon2 {
+	background-image: url("/imgs/product/category/cheongju.png");
+    background-size : 70%;
+    background-position : center;
+    background-repeat : no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-right : 10px;
+}
+
+.category_icon3 {
+	background-image: url("/imgs/product/category/fruitwine.png");
+    background-size : 70%;
+    background-position : center;
+    background-repeat : no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-right : 10px;
+}
+
+.category_icon4 {
+	background-image: url("/imgs/product/category/liquor.png");
+    background-size : 70%;
+    background-position : center;
+    background-repeat : no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-right : 10px;
+}
+
+.category_icon5 {
+	background-image: url("/imgs/product/category/alcoholic.png");
+	background-size : 70%;
+    background-position : center;
+    background-repeat : no-repeat;
+	width: 150px;
+	height: 150px;
+	margin-right : 10px;
+}
+
+<!--/* 카테고리 이미지 호버(각도 움직임) */-->
+.category_icon1:hover {
+	transform : rotate(-15deg);
+}
+.category_icon2:hover {
+	transform : rotate(-15deg);
+}
+.category_icon3:hover {
+	transform : rotate(-15deg);
+}
+.category_icon4:hover {
+	transform : rotate(-15deg);
+}
+.category_icon5:hover {
+	transform : rotate(-15deg);
+}
+
+<!--/* 카테고리 텍스트 관련 */-->
+.kind {
+	text-align : center;
+	padding-top : 130px;
+	font-weight : 900;
+}
+
+
+<!--/*----------------------------------------------------*/-->
+<!--/* 상품 관련 */-->
+
+#bar {
+	width : 80%;
+	margin-top : 30px;
+	margin-left : 10%;
+	height : 30px;
+	border-bottom : 3px solid black;
+}
+
+.column_name {
+	width : 80%;
+	margin-top : 30px;
+	margin-left : 10%;
+	font-size : 30px;
+	font-weight : bolder;
+}
+
+.line {
+	 border : 1px solid silver;
+	 width : 80%;
+	 margin-left : 10%;
+}
+
+.product_register {
+	text-align : left;
+	width : 80%;
+	margin-top : 50px;
+	margin-left : 10%;
+}
+
+.register {
+	display: inline-block;
+	display : inline-table;
+	width : 100%;
+	height : 100%;
+	margin-bottom : 20px;
+	margin-left : 32px;
+	text-align : center;
+	}
+
+<!--/* 이미지 등록시 사이즈 */-->
+.image_box {
+	width:250px;
+    height:220px;
+    margin:0 auto;
+}
+
+
+.image-thumbnail{
+	width:100%;
+    height:100%;
+}
+
+<!-- 상품 인서트(관리자) -->
+.ricewine {
+	display : inline-table;
+	margin: 26px;
+}
+
+.insert_form{
+	width:230px; height:230px; border:1px solid lightgray; border-radius: 20%; float: left;
+}
+
+.insert_form img{
+    margin-top : 40px;
+}
+
+<!--/* 상품이름, 설명, 금액 */-->
+.p_name {
+	font-size : 20px;
+	font-weight : bolder;
+}
+
+.p_price {
+	font-size : 20px;
+	font-weight : bolder;
+}
+
+<!--/* 구입, 장바구니 버튼 */-->
+.buttonwhite_main {
+	display : flex;
+	justify-content: center;
+	padding-bottom: 35px;
+}
+
+.buttonwhite {
+		display: inline-block; color: black; text-align: center;
+		border: 1px solid #cccccc; background-color: white;
+		width: 75px; padding: 10px;
+		margin-bottom : 10px; margin-top : 0px; margin-left : 5px;
+		font-size:11px; font-weight: bolder; text-decoration:none !important;
+		border-radius: 10px;
+	}
+.buttonwhite:hover{background-color:#DEB887; color:white; border-radius: 10px;}
+<!--/* 찜버튼 */-->
+.button_heart {
+	margin-top : 0px;
+	padding-top : 5px;
+	border : none;
+	outline : none;
+	font-size : 25px;
+	background-color : white;
+}
+
+.glyphicon-heart-empty {
+	color : #DEB887;
+	top: 10px;
+}
+.wrapcon{
+    width: 100%;
+}
+.con{
+    float: left;
+    padding-left: 45px;
+}
+
+
+
+
+
+        </style>
+    </th:block>
+</head>
+<div id="product_page" layout:fragment="content">
+    <!-- 전통주 소개 -->
+    <div class="infodiv"><p class="infop">기타 주류</p></div>
+
+    <!-- 카테고리 -->
+    <div class="category">
+        <div id="category">
+            <a href="/productPage/riceWine">
+                <div class="category_icon1">
+                    <p class="kind">탁주</p>
+                </div>
+            </a>
+            <a href="/productPage/chengju">
+                <div class="category_icon2">
+                    <p class="kind">청주/약주</p>
+                </div>
+            </a>
+            <a href="/productPage/fruitWine">
+                <div class="category_icon3">
+                    <p class="kind">과실주</p>
+                </div>
+            </a>
+            <a href="/productPage/liquor">
+                <div class="category_icon4">
+                    <p class="kind">증류주</p>
+                </div>
+            </a>
+            <a href="/productPage/alcoholic">
+                <div class="category_icon5">
+                    <p class="kind">기타 주류</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            function login_alert(){
+                alert('로그인 후 이용이 가능합니다.');
+                window.location.href="/members/login";
+           }
+
+        </script>
+    </th:block>
+    <!-- 상품 -->
+    <div class="column_name">기타 주류</div>
+    <hr class="line">
+    <div class="product_register">
+
+        <div class="register wrapcon">
+            <th:block th:each="product, status: ${products.getContent()}">
+                <div class="con" th:if="${product.productCategorys} == 'ALCOHOLIC'">
+                    <div style="cursor:pointer;"
+                         th:onclick="'location.href=\'' + @{'/product/' +${product.id}} + '\''">
+                        <div class="image_box">
+                            <img class="image-thumbnail" th:src="${product.imgUrl}" th:alt="${product.productNm}">
+                        </div>
+                        <p class="p_name">[[${product.productNm}]]</p>
+                        <p>[[${product.productDetail}]]</p>
+                        <p class="p_price">[[${product.price}]]원</p>
+                    </div>
+                    <div class="buttonwhite_main">
+                        <!----------------미로그인시 알럿창 -------------------------------->
+                        <div sec:authorize="isAnonymous()">
+                            <div class="buttonwhite1">
+                                <button class="buttonwhite" onclick="login_alert();">구입</button>
+                                <button class="buttonwhite" onclick="login_alert();">장바구니</button>
+                                <!--<button class="button_heart" onclick="login_alert();">
+                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                </button>-->
+                            </div>
+
+                        </div>
+                        <!----------------로그인시 이동 -------------------------------->
+                        <div sec:authorize="hasAnyAuthority('ROLE_USER')">
+                            <div class="buttonwhite1">
+                                <a th:onclick="'location.href=\'' + @{'/product/' +${product.id}} + '\''" class="buttonwhite" style="cursor:pointer;">구입</a>
+                                <a th:onclick="'location.href=\'' + @{'/product/' +${product.id}} + '\''" class="buttonwhite" style="cursor:pointer;">장바구니 담기</a>
+                            </div>
+                            <!--<div class="buttonwhite2">
+                                <button class="button_heart" onclick="location.href='<%=noForm%>'">
+                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                </button>
+                            </div>-->
+                        </div>
+                        <!----------------어드민으로 로그인시 -------------------------------->
+                        <div sec:authorize="hasAnyAuthority('ROLE_HQ')">
+                            <div class="buttonwhite1">
+                                <a th:href="'/HQ/product/'+${product.id}" class="buttonwhite" style="cursor:pointer;">수정</a>
+                                <a class="buttonwhite deletebutton" th:href="'/productDelete/' +${product.id}" style="cursor:pointer;">삭제</a>
+                                <!--<a class="buttonwhite deletebutton" th:href="'/productDelete/' +${product.id}">삭제</a>-->
+                            </div>
+                            <!--<div class="buttonwhite2">
+                                <button class="button_heart" onclick="">
+                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                </button>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+</html>

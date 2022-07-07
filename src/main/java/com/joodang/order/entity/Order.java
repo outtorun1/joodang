@@ -1,0 +1,68 @@
+package com.joodang.order.entity;
+
+import com.joodang.member.entity.BaseEntity;
+import com.joodang.member.entity.Member;
+import com.joodang.order.constant.OrderStatus;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "orders")
+@Getter
+@Setter
+public class Order extends BaseEntity {
+    @Id
+    @GeneratedValue
+    @Column(name = "order_id")
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY) // 한 사람이 여러 번의 주문
+    private Member member;
+
+    private LocalDateTime orderDate; // 주문 날짜
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus; // 주문 상태
+
+    // CascadeType.ALL : 부모 Entity의 영속성 상태 변화를 자식 Entity에게 모두 전이하시오.
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<OrderProduct> orderProducts = new ArrayList<OrderProduct>();
+
+    public void addOrderProduct(OrderProduct orderProduct){
+        orderProducts.add(orderProduct) ; // 주문된 상품들을 컬렉션에 저장합니다.
+        orderProduct.setOrder(this);
+    }
+    public static Order createOrder(Member member, List<OrderProduct> orderProductList){
+        Order order = new Order();
+        order.setMember(member); // 누가 이 주문을 하고 있는가.
+
+        for(OrderProduct orderProduct : orderProductList){
+            order.addOrderProduct(orderProduct);
+        }
+        order.setOrderStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order ;
+    }
+    public int getTotalPrice(){
+        // 모든 상품들의 sum(단가*수량)을 구합니다.
+        int totalPrice = 0;
+        for(OrderProduct orderProduct:orderProducts){
+            totalPrice += orderProduct.getTotalPrice() ;
+        }
+        return totalPrice;
+    }
+
+    // 주문 상태를 'CANCEL' 모드로 변경하고, 모든 상품들에 대한 재고를 늘려 줍니다.
+    public void cancelOrder(){
+        this.orderStatus = OrderStatus.CANCEL ;
+
+        for(OrderProduct orderProduct : orderProducts){
+            orderProduct.cancel();
+        }
+    }
+}

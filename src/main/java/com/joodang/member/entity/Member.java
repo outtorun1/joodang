@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "members")
 @Getter @Setter @ToString
-public class Member {
+public class Member extends BaseEntity {
     @Id
     private String email;
 
@@ -65,18 +65,16 @@ public class Member {
         member.setEmail(memberFormDto.getEmail());
         member.setMName(memberFormDto.getMName());
         member.setMPhone(memberFormDto.getMPhone());
-//        member.setMZipcode(memberFormDto.getMZipcode());
-//        member.setMAddress1(memberFormDto.getMAddress1());
-//        member.setMAddress1(memberFormDto.getMAddress1());
-        member.setMZipcode("01234");
-        member.setMAddress1("서울");
-        member.setMAddress2("본사");
-//        member.setMGender(memberFormDto.getMGender());
+        member.setMZipcode(memberFormDto.getMZipcode());
+        member.setMAddress1(memberFormDto.getMAddress1());
+        member.setMAddress2(memberFormDto.getMAddress2());
 
-        // 고객 지역 설정 : 고객 주소지에 속한 가맹점을 지정하기 위한 설정
-//        String[] spRegion = memberFormDto.getMAddress1().split(" ");
-//        member.setMRegion(spRegion[0]);
-        member.setMRegion("본사");
+        if (memberFormDto.getGender().equals("MALE")) {
+            member.setMGender(Gender.MALE); // 남자
+        } else {
+            member.setMGender(Gender.FEMALE); // 여자
+        }
+        member.setMRegion(memberFormDto.getMRegion());
 
         String password = passwordEncoder.encode(memberFormDto.getMPassword());
         member.setMPassword(password);

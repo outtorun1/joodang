@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8">
+    <title>전통주 먹는 법</title>
+
+    <th:block layout:fragment="css">
+        <style>
+        <!--/* info div style */-->
+        .infodiv{
+            width: 100%;
+            height: 150px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+        }
+        .infodiv > p{
+            font-size: 33px;
+        }
+
+        <!--/* content style */-->
+        .wrapcontent{
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        .divrow{
+            height: 100%;
+            float: left;
+            margin: auto;
+        }
+
+
+        <!--/* h5 text style */-->
+        .texth5{
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        <!--/* p text style */-->
+        .textp{
+            font-size: 18px;
+        }
+
+        #main_title{
+            margin-bottom : 70px;
+            text-align : center;
+        }
+
+        #content1{
+            display : flex;
+        }
+
+        .con1img1{
+            width: 400px;
+            height: 570px;
+        }
+
+        .content1{
+            margin-left : 50px;
+            width : 900px;
+        }
+
+        .middle_title{
+            margin-top : 70px;
+            margin-bottom : 30px;
+            text-align : center;
+            font-size : 22px;
+            font-weight : bolder;
+        }
+
+        #content2{
+            display : flex;
+        }
+
+        .con2img1{
+            margin-top : 60px;
+            width: 400px;
+            height: 600px;
+        }
+
+        .content2{
+            margin-right : 50px;
+            width : 950px;
+        }
+
+        #content3{
+            display : flex;
+            margin-top : 50px;
+        }
+
+        .con3img1{
+            margin-top : 10px;
+            width: 400px;
+            height: 600px;
+        }
+
+        .content3{
+            margin-left : 50px;
+        }
+
+        #content4{
+            display : flex;
+        }
+
+        .content4{
+            margin-right : 50px;
+            width : 950px;
+            margin-bottom: 100px;
+        }
+
+        .con4img1{
+            margin-top : 80px;
+            width: 400px;
+            height: 630px;
+        }
+section{
+			width: 100%;
+			height: 3000px;
+		}
+
+
+
+        </style>
+    </th:block>
+</head>
+<section layout:fragment="content">
+    <div class="infodiv"><p class="infop">전통주 먹는 방법</p></div>
+    <div class="wrapcontent">
+        <div id="main_title">
+            <h5 class="texth5">현대의 미식가들은 와인의 맛을 즐기는 간단한 방법을 많이들 알고 있다.</h5>
+            <h5 class="texth5">그러나 우리 전통약주의 맛을 즐기는 법을 알고 있는 사람은 흔하지 않다.</h5>
+        </div>
+        <div class="divrow">
+            <div id="content1">
+                <!-- content1 -->
+                <div class="con1img">
+                    <img class="con1img1" src="/imgs/story/eat/eat1.jpg">
+                </div>
+                <div class="content1">
+                    <div class="contextdiv">
+                        <h5 class="texth5">첫째 - 자세히 살펴본다</h5>
+                        <p class="textp">
+                            전통약주의 색깔은 대체로 황금색을 띄며 엷은 색깔에서 짙은 담갈색을 띄는 것까지 황금색의 농도가 다르다.<br>
+                            색깔이 옅을수록 담백한 맛을 갖고 색깔이 짙을수록 진한 맛이 나며 오래된 술이다.<br>
+                            좋은 전통약주는 맑고 황금색을 띄는 것이 좋으며 단, 약재 등 곡물이 아닌 원료가 들어간 경우 원료의 색깔에 따라 달라지기도 한다.<br>
+                            일반적으로 술은 오래된 것이 좋다고 생각하기 쉬우나 곡물을 사용한 발효주는(맥주, 일본식청주) 만든지 100일이 지나지 않는 것이 좋은 경우가 많다.
+                        </p>
+                        <br>
+                        <h5 class="texth5">둘째 - 냄새를 맡는다.</h5>
+                        <p class="textp">
+                            전통약주에는 크게 나누어 두 가지의 향이 있다.<br>
+                            하나는 누룩의 독특한 향으로써 대개 구수한 느낌의 냄새이다.<br>
+                            누룩향에 익숙치 않은 현대인들은 짙은 누룩향을 좋아하지 않으나 적당한 누룩향은 품격높은 전통약주에서 빼놓을 수 없는 향이다.<br>
+                            따라서 누룩향의 다과에 따라 자기가 좋아하는 제품을 선택하는 것이 중요하다.<br>
+                            둘째로 과실향이 있다. 과즙을 전혀 사용치 않았는데도 잘 발효된 전통약주에서는 사과향이나, 수박향 등의 과실향이 난다.<br>
+                            이 과실향은 누룩의 밀기울(밀껍질)성분이 발효되면서 생성하는 향기로서 대개 저온숙성시킨 전통 약주에서 볼 수 있다.<br>
+                            방향을 즐기는 사람은 이런계통의 약주를 선택하고 드라이한 취향의 사람은 방향이 적은쪽의 약주를 선택하는 것이 좋다.
+                        </p>
+                        <br>
+                        <h5 class="texth5">셋째 - 맛과 향을 함께 음미한다.</h5>
+                        <p class="textp">
+                            전통약주의 색깔은 대체로 황금색을 띄며 엷은 색깔에서 짙은 담갈색을 띄는 것까지 황금색의 농도가 다르다.<br>
+                            색깔이 옅을수록 담백한 맛을 갖고 색깔이 짙을수록 진한 맛이 나며 오래된 술이다.<br>
+                            좋은 전통약주는 맑고 황금색을 띄는 것이 좋으며 단, 약재 등 곡물이 아닌 원료가 들어간 경우 원료의 색깔에 따라 달라지기도 한다.<br>
+                            일반적으로 술은 오래된 것이 좋다고 생각하기 쉬우나 곡물을 사용한 발효주는(맥주, 일본식청주) 만든지 100일이 지나지 않는 것이 좋은 경우가 많다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="content2">
+                <div class="content2">
+                    <h5 class="middle_title texth5">전통 약주의 6가지 맛</h5>
+                    <div class="contextdiv">
+                        <h5 class="texth5">단맛</h5>
+                        <p class="textp">
+                            와인의 경우에는 발효를 일찍 끝내여 포도당의 잔류량에 따라 Sweet에서 Dry 까지 단맛의 강약을 조절하지만 약주의 경우에는 덧술법이라는 방법을 사용한다.<br>
+                            누룩효소에 의해 생성된 포도당을 효모가 알코올로 분해해 감에 따라 단 맛이 줄어들면 발효가 점차 멈춘다.<br>
+                            이때 또 한번 쌀을 보충해 주거나 쌀과 누룩을 함께 보충해서 재차 발효가 일어나게 하는 법을 덧술법이라고 하며 이때 일정한 알콜농도를 지나게 되면 포도당 생성량이
+                            알코올 분해속도보다 앞서서 단맛이 남게 되는 것이다.<br>
+                            일반적으로 정상적인 발효를 인위적으로 중단시키는 경우 두통의 원인이 되기도 하므로 자연적인 덧술법으로 단 맛을 유도하는 약주의 감미는 매우 과학적이고 현명한 방법이라
+                            하겠다.<br>
+                            단 맛의 정도에 따라 약주를 선택할때는 반드시 인공적인 감미료에 의한 것인지, 덧술법에 의한 것인지 또 몇번의 덧술을 거쳤는지를 확인하는 것이 좋다.<br>
+                            같은 감미의 정도라 하더라도 여러 번 덧술한 것을 선택하는 것이 바람직하다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">신맛</h5>
+                        <p class="textp">
+                            약주의 신 맛은 누룩속의 미생물 조성과 발효경과에 따라 젖산 또는 구연산 등 다양한 유기산에 의해 생기는 자연산미이다.<br>
+                            다만 오래된 김치냄새 또는 식초냄새가 나는 경우는 상한 술이라고 보아야 하므로 신 맛을 음미할 때는 반드시 향과 함께 음미하여야한다.<br>
+                            전통약주의 가장 큰 특징이 구연산, 젖산, 호박산 등의 자연 산미와 어우러진 달콤한 맛임을 기억하되 Dry한 취향의 사람은 감미와 산미가
+                            조화된 상태인가를 음미하여 제품을 선택하여야 한다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">떫은맛</h5>
+                        <p class="textp">
+                            떫은 맛은 도토리, 생감에서 많이 볼 수 있는 맛으로 미각신경이 마비되어 일어나는 맛이므로 사람에게 불쾌감을 줄 수 있다.<br>
+                            그러나 약주의 약간 떫은 맛은 젖산에서 나온 맛으로 적절한 경우 고기안주와 어울린다.
+                        </p>
+                    </div>
+                </div>
+                <div class="con2img">
+                    <img class="con2img1" src="/imgs/story/eat/eat2.jpg">
+                </div>
+            </div>
+
+            <div id="content3">
+                <div class="con3img">
+                    <img class="con3img1" src="/imgs/story/eat/eat3.jpg">
+                </div>
+                <div class="content3">
+                    <div class="contextdiv">
+                        <h5 class="texth5">쓴맛, 매운맛</h5>
+                        <p class="textp">
+                            약주의 매운 맛은 기본적으로 알콜성분에 의한 것이다.<br>
+                            별도로 약미약주의 경우에는 사용된 약초류의 쓴 맛이 영향을 주기도 하며 효모 자체가 내는 쓴 맛이 있다.<br>
+                            적절한 쓴 맛은 식욕을 돋우는 긍정적인 맛이기도 하다.<br>
+                            전통약주의 알콜도수는 11%~18%까지로 다양하나 약주를 선택할 때 주정도수보다는 조화로운 맛에 기준을 두어 선택하는 것이 좋다.<br>
+                            대개 세번이상 덧술하여 오래 발효시킨 것일수록 주정도수가 높으며 중후한 맛을 가진다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">구수한맛</h5>
+                        <p class="textp">
+                            이 맛은 약주에서 매우 중요한 맛이다.<br>
+                            곡물 발효주의 특징적인 맛으로써 곡물 특히 곡물의 피질에 많은 단백질이 아미노산으로 분해되어 나는 자연스러운 맛이다.<br>
+                            특히 한국인의 입맛에 중요한 요소이다. 대체로 이 구수한 맛은 술이 숙성되어 가면서 강해지는 경향이 있다.<br>
+                            이것이 지나치면 먹을 술로서 구수한 맛을 좋아하는 사람은 누룩의 사용량이 많은 술이나 일반적으로 짙은빛깔의 술을 선택하는 것이 좋고 보다 경쾌한 맛을 원하는 사람은
+                            옅은 색깔의 술을 선택하는 것이 좋다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">청량미와 온도</h5>
+                        <p class="textp">
+                            청량미는 약주의 온도와 매우 밀접한 관계가 있다.<br>
+                            일반적으로 낮은 온도에서는 단 맛은 감소하고 신 맛은 증가하며 알코올의 자극성은 낮아지고 구수한 맛은 감소하며 청량감은 증가한다.<br>
+                            조선시대 식품서인 '규합총서'에는 '밥먹기는 봄같이하고 국먹기는 여름같이하고 장먹기는 가을같이 하고 술먹기는 겨울같이 하라'라고 하는 말이 있다.<br>
+                            따라서 섭씨 6℃에서 15℃사이에서 선택하되 Light한 맛을 선호하는 사람은 가능한 차게해서 마시고 다소 무겁고 복잡한 맛을 좋아하는 사람은 15℃부근으로 해서
+                            마시는 것이 좋다.<br>
+                            결국 전통약주의 맛을 즐기기 위해서는 그 제품의 특성을 고려하여 온도에 신경을 써야 할 것이다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content4">
+                <div class="content4">
+                    <h5 class="middle_title texth5">전통 약주 즐겁게 마시는 법</h5>
+                    <div class="contextdiv">
+                        <h5 class="texth5">온도</h5>
+                        <p class="textp">
+                            약주를 마실때는 온도를 앞에서도 설명하였듯이 8℃ 부근으로 차게 하여서 마시는 것이 좋다.<br>
+                            이때 담백한 맛을 좋아하는 사람은 보다 차게, 다소 무거운 맛과 향을 좋아하는 사람은 보다 덜 차게해서 마시는 것이 좋다.<br>
+                            다만 마시는 동안 온도가 변화되지 않도록 포도주처럼 얼음그릇에 두고 마시면 더욱 좋을 것이다.<br>
+                            겨울에는 취향에 따라 오히려 따끈하게 데워 마시면 독특한 맛을 느낄 수 있으나 전통약주는 차게해서 마시는 것이 법도에 맞는 것이다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">잔</h5>
+                        <p class="textp">
+                            전통주기에서 잔과 배가 있어서 잔은 배에 비해서 비교적 작은 것을 말한다.<br>
+                            그리고 온도를 줄이기 위하여 도자기 잔을 사용하는 것이 좋으며 유리잔을 사용할때는 포도주잔과 같이 손잡이가 있어 체온이 술의 온도를 높이지<br>
+                            않도록 하는 것이 좋다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">병을 열때</h5>
+                        <p class="textp">
+                            술병을 열자 마자 술을 따르지 말고 술병 마개를 연 후 잠시 기다려 병속에 차있던 미량의 가스를 날아가게 한 후 조용히 잔에 술을 따라야한다.
+                        </p>
+                        <br>
+                    </div>
+                    <div class="contextdiv">
+                        <h5 class="texth5">음식과 알맞은 약주의 선택</h5>
+                        <p class="textp">
+                            전통약주는 대개 단맛과 신맛이 다른 술에 비해 강하다.<br>
+                            비교적 Dry한 약주가 식사와 함께하는 약주로 좋다.<br>
+                            예로부터 반주란 식사전에 한두잔의 약주를 마심으로써 식욕을 돋구고 소화를 촉진하기 위한 것이었다.<br>
+                            따라서 식사전의 반주로 적합한 약주는 감미가 많지 않고 조화로운 산미가 다소 있는 것이 좋다.<br>
+                            식사중이나 식사 끝에 담소하며 즐기는 약주는 어느것이나 개인의 취향에 따르면 되겠으나 음식의 종류에 맞는 약주를 선택하는 지혜가 필요하다.
+                        </p>
+                    </div>
+                </div>
+                <div class="con4img">
+                    <img class="con4img1" src="/imgs/story/eat/eat4.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</html>

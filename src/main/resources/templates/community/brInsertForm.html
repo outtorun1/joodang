@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/layout1}">
+<head>
+    <meta charset="UTF-8">
+    <title>영상 등록</title>
+
+<th:block layout:fragment="css">
+<style type="text/css">
+
+/* 최상위 박스 */
+#insert_main_box {
+	width : 70%;
+	height : 700px;
+	margin-left : 15%;
+	margin-right : 15%;
+	margin-bottom : 5%;
+	display : inline-block;
+	text-align : center;
+	font-weight : bolder;
+}
+
+/* info div style */
+.infodiv{
+   width: 100%;
+   height: 150px;
+   text-align: center;
+   vertical-align: middle;
+   line-height: 150px;
+}
+.infodiv > p{
+   font-size: 33px;
+}
+
+.insert_box{
+	display : inline-block;
+}
+
+/* 이미지 관련 */
+
+.image_file{
+	width : 250px;
+	font-size : 15px;
+}
+
+/* 카테고리 박스 */
+.category_box{
+	width : 1000px;
+	height : 500px;
+	padding-top : 50px;
+	margin-left : 270px;
+}
+
+.form-group{
+	font-size : 18px;
+}
+
+.form-control{
+	width : 500px;
+	font-size : 15px;
+}
+
+/* form-group 컬럼 간격 */
+.inputtitle{
+	width : 100px;
+	padding-top : 5px;
+
+}
+
+/* 등록버튼 */
+#btn_group_main{
+	width : 470px;
+	margin-left : 265px;
+}
+
+.btn{
+	font-size : 18px;
+}
+
+.btn:hover{background-color:#DEB887; color:white;}
+
+</style>
+</th:block>
+</head>
+
+<script type="text/javascript">
+
+	function frmsubmit(){
+
+		if(br_id.value == ""){
+			alert('영상 ID를 입력해 주세요.');
+			document.frm.br_id.focus();
+
+			return false;
+		}
+
+		if(br_note.value == ""){
+			alert('영상 설명을 입력해 주세요.');
+			document.frm.br_note.focus();
+
+			return false;
+		}
+
+		if(br_video.value == ""){
+			alert('영상 주소를 입력해 주세요.');
+			document.frm.br_video.focus();
+
+			return false;
+		}
+	}
+
+</script>
+
+<body>
+
+<form layout:fragment="content" id="frm" name="frm" method="post" action="" onSubmit="return frmsubmit()">
+    <div id="insert_main_box">
+        <div class="infodiv"><p class="infop">영상 등록</p></div>
+        <div class="insert_box">
+            <div class="category_box">
+                <div class="form-group">
+                    <div class="col-sm-3 inputtitle">영상 id</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="br_id"
+                               placeholder="영상 코드(id)를 입력하세요." name="br_id">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <div class="col-sm-3 inputtitle">영상 설명</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="br_note"
+                               placeholder="안주 이름을 입력하세요." name="br_note" value="">
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <div class="col-sm-3 inputtitle">카테고리</div>
+                    <div class="col-sm-6">
+                        <select class="form-control" id="category" name="category" >
+                            <option value="riecewine">탁주</option>
+                            <option value="chengju">청주/약주</option>
+                            <option value="fruitwine">과실주</option>
+                            <option value="liquor">증류주</option>
+                        </select>
+                    </div>
+                </div>
+                <br><br>
+                <div class="form-group">
+                    <div class="col-sm-3 inputtitle">영상 주소</div>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="br_video"
+                               placeholder="영상 주소를 입력하세요." name="br_video" value="">
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="btn-group btn-group-justified" id="btn_group_main">
+                    <div class="btn-group" id="btn_group">
+                        <input type="submit" id="submit" name="submit" value="영상 등록"
+                               class="btn btn-default">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

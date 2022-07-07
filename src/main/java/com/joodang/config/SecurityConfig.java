@@ -35,9 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             anyRequest().authenticated() : 상기 위에서 열거한 내용 이외의 모든 항목은 인증을 요구합니다.
         */
         http.authorizeRequests()
-                .mvcMatchers("/", "/member/**").permitAll()
+                .mvcMatchers("/", "/member/**",  "/story/**", "/product/**", "/productPage/**", "/community/**", "/relishPage/**", "/brewagePage/**", "/service/**", "/announcement/**", "/faq/**", "/OneByOne/**", "/way_to_come/**", "/cart/**").permitAll()
+                .mvcMatchers("/admin/**", "/HQ/**", "/BRANCH/**", "/productInsert/**",  "/reInsert/**").hasAnyRole("HQ", "BRANCH")
                 .anyRequest().authenticated();
-//                .mvcMatchers("/admin/**").hasAnyRole("HQ", "BRANCH")
 
 
         /* 인증을 받지 못한 사용자가 접근 시도시 http 응답 코드 401을 보여줍니다. */
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 다음 항목들은 인증 절차를 무시하도록 하겠습니다.
-        web.ignoring().antMatchers("/css/**", "/js/**", "/imgs/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/imgs/**", "/images/**");
     }
 
     @Autowired
